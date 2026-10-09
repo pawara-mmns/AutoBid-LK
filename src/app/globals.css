@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fafbf8;
+  --foreground: #142c2b;
+  --primary: #194d43;
+  --primary-foreground: #ffffff;
+  --primary-hover: #123c34;
+  --primary-active: #0d3029;
+  --secondary: #e3ebe6;
+  --muted: #eef2ed;
+  --muted-foreground: #526360;
+  --accent: #d8ef9d;
+  --accent-foreground: #142c2b;
+  --border: #d5dfd8;
+  --ring: #276758;
+  --radius: 0.75rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-active: var(--primary-active);
+  --color-secondary: var(--secondary);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --font-sans: Arial, "Nirmala UI", "Iskoola Pota", "Latha", sans-serif;
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) * 1.5);
+  --radius-xl: calc(var(--radius) * 2);
+  --spacing: 0.25rem;
+  --text-base: 1rem;
+  --text-base--line-height: 1.6;
+}
+
+@layer base {
+  * { @apply border-border; }
+  body { @apply bg-background font-sans text-base text-foreground antialiased; }
+  a, button { -webkit-tap-highlight-color: transparent; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--ring); outline-offset: 4px; }
+  button:not(:disabled) { cursor: pointer; }
+  section[id] { scroll-margin-top: 2rem; }
+  ::selection { background: var(--accent); color: var(--foreground); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
