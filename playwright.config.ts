@@ -7,17 +7,17 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   reporter: "list",
   use: {
-    baseURL: "http://127.0.0.1:3000",
+    baseURL: "http://127.0.0.1:3100",
     trace: "retain-on-failure",
     channel: process.env.PLAYWRIGHT_CHANNEL === "chrome" ? "chrome" : undefined,
   },
   projects: [
     { name: "desktop-chromium", use: { ...devices["Desktop Chrome"] } },
-    { name: "mobile-chromium", use: { ...devices["Pixel 7"] } },
+    { name: "mobile-chromium", use: { ...devices["Pixel 7"], viewport: { width: 360, height: 800 } } },
   ],
   webServer: {
-    command: "npm run start -- --hostname 127.0.0.1",
-    url: "http://127.0.0.1:3000",
+    command: "npm run start -- --hostname 127.0.0.1 --port 3100",
+    url: "http://127.0.0.1:3100",
     reuseExistingServer: false,
     timeout: 60_000,
   },

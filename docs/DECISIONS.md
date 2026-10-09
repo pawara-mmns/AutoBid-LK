@@ -15,6 +15,29 @@
 11. **Compatible lint tooling despite upstream maintenance limitations.** ESLint 9.39.5 satisfies the React/import/accessibility plugins bundled with eslint-config-next; ESLint 10 currently conflicts with their peer ranges. npm marks ESLint 9 deprecated. The lint-only `braces` dependency has an unpatched nested-pattern denial-of-service advisory (GHSA-vfj7-8cjw-p6xm), reported across five transitive packages. Do not force a framework downgrade or hide the finding with an unverified override. Reassess upstream releases in Phase 1; production dependencies are unaffected according to npm audit.
 12. **Stable project instructions.** Next.js 16.4 automatically appends framework agent rules on development startup. Set its documented `agentRules` option to false so the manually maintained AGENTS.md remains the source of project rules. Version-matched Next.js documentation also ships under node_modules/next/dist/docs/.
 
+## 2026-10-09 — Phase 1
+
+1. Official @supabase/ssr browser/server clients and Next.js Proxy manage cookie sessions. Proxy uses getClaims; server guards/actions independently use getUser for provider validation. The static public homepage stays outside session checks.
+2. One profile per Auth user; buying and selling share the same account. Optional dealer_profiles hold protected verification state. Separate admin_grants are writable only by separately authorized trusted provisioning; roles are never inferred from editable metadata.
+3. RLS is combined with column grants. Customers can read only their own private rows, edit safe profile fields and request pending dealer status. An admin grant currently grants entry access, not blanket profile visibility or moderation tools.
+4. Email confirmation and password recovery support both PKCE codes and token hashes. Origin comes from trusted configuration; destinations/token types are allowlisted. Email templates are language-specific provider assets. Error feedback never exposes provider internals or secrets.
+5. PGlite is a development-only PostgreSQL test/type-generation dependency. It makes actual SQL/RLS verification reproducible without Docker or credentials. Its Auth fixture is synthetic and does not replace real Supabase Auth, PostgREST or SMTP acceptance tests.
+6. E2E builds explicitly without Supabase settings on port 3100, preserving an existing server on 3000 and avoiding accidental project calls. A normal build restores environment configuration afterward.
+
+Sources: [Supabase SSR clients](https://supabase.com/docs/guides/auth/server-side/creating-a-client), [password auth](https://supabase.com/docs/guides/auth/passwords), [RLS](https://supabase.com/docs/guides/database/postgres/row-level-security), [CLI configuration](https://supabase.com/docs/guides/local-development/cli/config) and [PGlite](https://pglite.dev/docs/).
+
+## 2026-10-09 — Phase 2
+
+1. **Minimum public read model.** No vehicle tables existed in migrations or the checked exposed project schema. Use vehicle_listings and vehicle_media without duplicating private profiles or creating speculative seller/auction tables. A future owned workflow must publish a safe projection after separately authorized review.
+2. **Anonymous server reads with two visibility boundaries.** Reuse validated public Supabase configuration in a cookie-free server-only client. Explicit projections and approval/publication checks supplement RLS/column grants. An authenticated visitor cannot accidentally widen public data through their session.
+3. **Shareable bounded discovery.** GET forms use one validated URL schema, escaped LIKE operands, fixed SQL sort columns, deterministic ID tie-breakers and 12-card pagination. Bounded invoker facets avoid downloading the catalog to populate filters. Money is exact integer cents end to end.
+4. **Private approved-photo delivery.** Private Storage and parent/media RLS control raw reads; a local UUID route checks raster path/MIME/size before Next Image optimization. Optimized public bytes can survive revocation in caches; document that limit and require a purge policy before release rather than implying immediate recall.
+5. **404 before streaming.** Resolve detail visibility in its layout before the child loading boundary can flush HTTP 200. Share the request-local cached lookup with the page/metadata. Browse retains its own Suspense skeletons.
+6. **Existing tooling, isolated public fixtures.** A loopback test-only REST/Storage adapter executes the real migration SQL as anon in PGlite. It tests real SDK queries and browser behavior without populating production or claiming provider integration. E2E builds unconfigured and fixture modes, closes resources and restores normal configuration. No new Phase 2 dependency/framework was needed.
+7. **Honest pre-release information.** Functioning footer/selling routes explain current availability. Other categories, selling and bidding are clearly unavailable. Display approval is not an inspection badge. English dictionaries and existing semantic tokens remain the only active language/design system.
+
+References: [Supabase pagination](https://supabase.com/docs/reference/javascript/range), [RLS](https://supabase.com/docs/guides/database/postgres/row-level-security), [Storage access control](https://supabase.com/docs/guides/storage/security/access-control), [Next Image cache behavior](https://nextjs.org/docs/app/api-reference/components/image) and [Next notFound/streaming behavior](https://nextjs.org/docs/app/api-reference/file-conventions/not-found).
+
 ## Official setup references consulted
 
 - [Next.js installation](https://nextjs.org/docs/app/getting-started/installation)

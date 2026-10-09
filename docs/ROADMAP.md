@@ -16,4 +16,12 @@ Phases require explicit authorization. Completion of a phase never authorizes th
 
 ## Status
 
-Phase 0: complete, with upstream tooling/environment limitations recorded in PHASE_LOG.md. Phases 1–8: not started and not authorized. Sinhala/Tamil UI, PWA, notification delivery and operational launch are intentionally not part of the foundation.
+Phase 0: complete. Phase 1: implementation and isolated checks complete; actual provider acceptance remains pending. Phase 2 was explicitly authorized and its source implementation/isolated verification are complete. Public configuration exists, but known tables are absent from the exposed project schema; no migration/deployment was performed. See PHASE_LOG.md for the provider gate. Phases 3–8 are not started or authorized. Resolve documented acceptance requirements before launch; Phase 3 requires a new instruction.
+
+| Phase 2 milestone | Implemented and verified scope |
+| --- | --- |
+| 2.1 Homepage | Search, categories, eligible recent cards, how it works, responsive navigation and functioning information routes. |
+| 2.2 Browsing | Database filters/four sorts, count, URL persistence, bounded pagination, desktop panel/mobile drawer and empty/error states. |
+| 2.3 Details | Approved visibility/404 gate, gallery, summary/specifications, declared condition/history, honest auction boundary and bounded related cards. |
+| 2.4 Database integration | Public-safe listings/media migration, RLS/column grants, private bucket, public client and generated types; real provider application/acceptance pending. |
+| 2.5 Tests and optimization | Unit/PostgreSQL RLS checks, isolated production browser suites, 360px/tablet/desktop review, optimized controlled images and normal-build restoration. |
