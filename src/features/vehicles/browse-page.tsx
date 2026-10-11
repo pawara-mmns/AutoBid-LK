@@ -29,7 +29,7 @@ export async function BrowsePage({ searchParams }: { searchParams: SearchParams 
           <p className="text-sm font-semibold" role="status">{result?.status === "ok" ? result.count === 1 ? copy.countOne : copy.count.replace("{count}", new Intl.NumberFormat("en-LK").format(result.count)) : ""}</p>
           <VehicleSort filters={filters} />
         </div>
-        {result.status !== "ok" ? <ListingState kind="error" /> : result.vehicles.length ? <VehicleGrid vehicles={result.vehicles} photoSizes="(min-width: 1280px) 300px, (min-width: 1024px) calc((100vw - 396px) / 2), (min-width: 640px) calc((100vw - 84px) / 2), calc(100vw - 40px)" /> : <ListingState kind="empty" filtered={active.length > 0 || filters.page > 1} />}
+        {result.status !== "ok" ? <ListingState kind="error" /> : result.vehicles.length ? <VehicleGrid vehicles={result.vehicles} returnTo={vehiclesUrl(filters)} photoSizes="(min-width: 1280px) 300px, (min-width: 1024px) calc((100vw - 396px) / 2), (min-width: 640px) calc((100vw - 84px) / 2), calc(100vw - 40px)" /> : <ListingState kind="empty" filtered={active.length > 0 || filters.page > 1} />}
         {result?.status === "ok" && result.count > 0 && <nav aria-label={copy.pagination} className="mt-8 flex flex-wrap items-center justify-between gap-3">
           {filters.page > pages ? <Button asChild variant="outline"><Link href={vehiclesUrl(filters, { page: 1 })}>{copy.first}</Link></Button> : filters.page > 1 ? <Button asChild variant="outline"><Link href={vehiclesUrl(filters, { page: filters.page - 1 })}>{copy.previous}</Link></Button> : <span />}
           {filters.page <= pages && <span className="text-sm text-muted-foreground">{copy.page.replace("{page}", String(filters.page)).replace("{pages}", String(pages))}</span>}

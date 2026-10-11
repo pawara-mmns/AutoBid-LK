@@ -5,11 +5,11 @@ import { VehiclePrice } from "@/features/vehicles/vehicle-price";
 import type { VehicleCardData } from "@/features/vehicles/types";
 import { getDictionary } from "@/i18n/get-dictionary";
 
-export function VehicleCard({ vehicle, photoSizes }: { vehicle: VehicleCardData; photoSizes?: string }) {
+export function VehicleCard({ vehicle, photoSizes, returnTo }: { vehicle: VehicleCardData; photoSizes?: string; returnTo?: string }) {
   const copy = getDictionary().vehicles;
   const title = `${vehicle.make} ${vehicle.model}`;
   return <article className="h-full min-w-0">
-    <Link href={`/vehicles/${vehicle.slug}`} aria-label={`${copy.viewDetails}: ${title}, ${vehicle.manufacture_year}`} className="group flex h-full flex-col overflow-hidden rounded-md border border-border bg-surface hover:border-control-border">
+    <Link href={`/vehicles/${vehicle.slug}${returnTo ? `?${new URLSearchParams({ from: returnTo })}` : ""}`} aria-label={`${copy.viewDetails}: ${title}, ${vehicle.manufacture_year}`} className="group flex h-full flex-col overflow-hidden rounded-md border border-border bg-surface hover:border-control-border">
       <VehiclePhoto sizes={photoSizes} src={vehicle.photo ? `/vehicle-images/${vehicle.id}/${vehicle.photo.id}` : undefined} alt={vehicle.photo?.alt_text ?? copy.photoAlt.replace("{vehicle}", title).replace("{number}", "1")} />
     <div className="flex flex-1 flex-col p-4 sm:p-5">
       <h3 className="break-words text-lg font-semibold leading-snug group-hover:text-primary">{title}</h3>

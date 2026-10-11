@@ -2,8 +2,8 @@ import { VehicleCard } from "@/features/vehicles/vehicle-card";
 import type { VehicleCardData } from "@/features/vehicles/types";
 import { getDictionary } from "@/i18n/get-dictionary";
 
-export function VehicleGrid({ vehicles, photoSizes }: { vehicles: VehicleCardData[]; photoSizes?: string }) {
-  return <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">{vehicles.map((vehicle) => <VehicleCard key={vehicle.id} vehicle={vehicle} photoSizes={photoSizes} />)}</div>;
+export function VehicleGrid({ vehicles, photoSizes, returnTo }: { vehicles: VehicleCardData[]; photoSizes?: string; returnTo?: string }) {
+  return <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">{vehicles.map((vehicle) => <VehicleCard key={vehicle.id} vehicle={vehicle} photoSizes={photoSizes} returnTo={returnTo} />)}</div>;
 }
 
 export function VehicleSkeletons({ count = 6 }: { count?: number }) {
