@@ -10,7 +10,7 @@ AutoBid LK will provide an accessible vehicle auction and buying marketplace for
 - Public vehicle browsing without a mandatory account. Authentication and appropriate verification before binding bids or live publication.
 - Guided workflows, safe defaults and confirmation before important actions. Clear loading, error, empty and success states as each workflow is introduced.
 - English, Sinhala and Tamil coverage; localization-ready copy begins in Phase 0, complete coverage in Phase 7.
-- Work on affordable smartphones and slower mobile networks. Keep scripts and assets small; avoid unnecessary dependencies and font downloads.
+- Work on affordable smartphones and slower mobile networks. Keep scripts and assets small; avoid unnecessary dependencies and third-party runtime font requests. The selected Phase 2 redesign uses one small, locally hosted variable font.
 - Accessibility includes semantic landmarks/headings, keyboard use, visible focus, contrast and reduced-motion support.
 - Never simplify away security or show invented marketplace activity and verification claims.
 
