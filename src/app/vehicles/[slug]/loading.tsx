@@ -1,3 +1,3 @@
-import { VehicleSkeletons } from "@/features/vehicles/vehicle-grid";
+import { VehicleDetailsSkeleton } from "@/features/vehicles/vehicle-details-skeleton";
 
-export default function LoadingVehicle() { return <div className="mx-auto max-w-6xl px-5 py-12 sm:px-8"><VehicleSkeletons count={1} /></div>; }
+export default function LoadingVehicle() { return <VehicleDetailsSkeleton />; }
