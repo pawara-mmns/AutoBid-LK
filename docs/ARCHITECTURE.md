@@ -95,6 +95,12 @@ BrowsePage composes the shared search, focused server sort/removal links, respon
 
 The existing schema/query adds fuel/transmission equality and inclusive bounded mileage ranges on existing columns. Invalid URLs show correction feedback with safe-default results. Public projections, RLS/visibility, bounded facets, pagination, Auth and schema remain. Homepage/detail composition is preserved, receiving shared search/card/skeleton improvements only. Five-width production browser checks and qa:browse record their verification boundaries in docs/design/stage-2-2026-10-11/implementation.md. No Phase 3 workflow is authorized.
 
+## UI implementation Stage 3 — vehicle details
+
+DetailsPage remains a Server Component composing gallery, compact highlights, price/unavailable-auction panel, condition, specifications, seller description, trust guidance and related cards. Only VehicleGallery/VehiclePhoto carry interaction/loading state. Gallery uses responsive contain-fit photos, small lazy desktop thumbnails and a selected-photo-only native dialog with keyboard/touch navigation, explicit focus cycling, Escape/focus restoration and scroll locking. Existing Button/image/card/token primitives remain the design system.
+
+Browse cards may carry canonical filter/sort/page context in `from`. The details route validates it with the existing bounded search schema, accepts only `/vehicles`, and discards unsafe destinations. Metadata and UI labels use English dictionaries. RelatedVehicles reuses the unchanged bounded public query behind a local Suspense boundary; empty/error results disappear. Details layout still resolves approved visibility before streaming to preserve HTTP 404. Query projections, DTOs, SQL/RLS, Storage, Auth and database types are unchanged. Evidence and fixture/provider limits: docs/design/stage-3-2026-10-11/implementation.md.
+
 ## Future domain integrity
 
 Private document access, auction lifecycle and bidding are not implemented. Future bids require atomic PostgreSQL transactions/locks, server time, idempotency and committed Realtime broadcasts. Money uses exact integer minor units. Add those services and database policies only in their authorized phases.

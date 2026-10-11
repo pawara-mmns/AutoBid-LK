@@ -1,0 +1,15 @@
+{
+  "observations": [
+    {
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    }
+  ],
+  "errors": []
+}

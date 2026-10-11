@@ -1,0 +1,115 @@
+{
+  "observations": [
+    {
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "width": 360,
+      "state": "missing-photo",
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "state": "single-photo",
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "state": "no-related",
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "state": "error",
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "state": "not-found",
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "state": "related-loading",
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "state": "image-loading",
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "state": "image-error",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "state": "missing-photo",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "state": "single-photo",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "state": "no-related",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "state": "error",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "state": "not-found",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "state": "related-loading",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "state": "image-loading",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "state": "image-error",
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "state": "200%-text",
+      "overflow": false
+    }
+  ],
+  "errors": []
+}

@@ -83,8 +83,8 @@ test.describe("isolated genuine-query fixtures", () => {
     await expect(page.getByText("LKR 1,000,000", { exact: true }).first()).toBeVisible();
     await expect(page.getByRole("heading", { name: "Bidding is coming soon" })).toBeVisible();
     await expect(page.getByText("Test disclosure: scratch on rear door.")).toBeVisible();
-    await page.getByRole("button", { name: "Show photo 2", exact: true }).click();
-    await expect(page.getByRole("button", { name: "Show photo 2", exact: true })).toHaveAttribute("aria-pressed", "true");
+    await page.getByRole("button", { name: "Next photo", exact: true }).click();
+    await expect(page.getByRole("status").filter({ hasText: "Photo 2 of 2" })).toBeVisible();
     const image = await request.get(`/vehicle-images/${listing}/${photo}`);
     expect(image.status()).toBe(200);
     expect(image.headers()["content-type"]).toBe("image/png");
@@ -174,7 +174,7 @@ test.describe("isolated genuine-query fixtures", () => {
     await expect(card).toContainText("Listing approved for display");
     await card.getByRole("link").focus();
     await page.keyboard.press("Enter");
-    await expect(page).toHaveURL(/\/vehicles\/fixture-car-1$/);
+    await expect(page).toHaveURL(/\/vehicles\/fixture-car-1(?:\?|$)/);
     await expect(page.getByRole("heading", { level: 1 })).toHaveText("Toyota Aqua");
   });
 
