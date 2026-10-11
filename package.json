@@ -21,6 +21,7 @@
     "test:e2e": "node scripts/run-e2e.mjs",
     "qa:browse": "node scripts/browse-design-qa.mjs",
     "qa:details": "node scripts/details-design-qa.mjs",
+    "qa:auth": "node scripts/auth-design-qa.mjs",
     "check": "npm run lint && npm run typecheck && npm run test"
   },
   "dependencies": {

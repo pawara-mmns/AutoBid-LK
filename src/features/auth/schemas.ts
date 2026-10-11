@@ -13,3 +13,4 @@ export const passwordSchema = z.object({ password, confirmPassword: z.string() }
   .refine((value) => value.password === value.confirmPassword, { path: ["confirmPassword"] });
 
 export type AuthMode = "sign-in" | "sign-up" | "recovery" | "password";
+export const authSchemas = { "sign-in": signInSchema, "sign-up": signUpSchema, recovery: recoverySchema, password: passwordSchema };

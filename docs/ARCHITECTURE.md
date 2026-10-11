@@ -101,6 +101,14 @@ DetailsPage remains a Server Component composing gallery, compact highlights, pr
 
 Browse cards may carry canonical filter/sort/page context in `from`. The details route validates it with the existing bounded search schema, accepts only `/vehicles`, and discards unsafe destinations. Metadata and UI labels use English dictionaries. RelatedVehicles reuses the unchanged bounded public query behind a local Suspense boundary; empty/error results disappear. Details layout still resolves approved visibility before streaming to preserve HTTP 404. Query projections, DTOs, SQL/RLS, Storage, Auth and database types are unchanged. Evidence and fixture/provider limits: docs/design/stage-3-2026-10-11/implementation.md.
 
+## UI implementation Stage 4 — authentication and account
+
+AuthPage/AuthForm reuse existing Server Actions, SSR clients and English dictionaries. PasswordField is the show/hide interaction island; shared schemas and authFormInput power client guidance and authoritative server validation. Registration defers optional name to the profile while preserving the existing signup contract. EmailNotice renders only after a server success response; signup resend uses auth.resend, recovery repeats its existing reset request. Its deadline-based 60-second cooldown and synchronous submission guard improve UX; provider rate limits remain the server abuse boundary.
+
+Auth screen links retain only existing allowlisted account/password/admin destinations. Confirmed users are independently checked with getUser before skipping login forms; invalid-link feedback remains available. AccountView is a Server Component composing the guarded own profile, real password/logout actions and optional native dealer disclosure. Ownership/admin/verification services, cookie Proxy and callbacks are preserved. Neutral My account navigation continues to support guests and signed-in customers without session-dependent public rendering. No public Auth polling, schema/provider configuration or marketplace source changes.
+
+The E2E runner additionally builds a controlled loopback Auth/profile transport mode for focused UI tests, explicitly distinct from actual GoTrue/SMTP acceptance. qa:auth uses port 3105, five widths and controlled states, then restores the ordinary build. Actual provider, signing, delivery, recovery/refresh/revocation and device/screen-reader acceptance remain pending. Detailed inventory and evidence: docs/design/stage-4-2026-10-11/implementation.md.
+
 ## Future domain integrity
 
 Private document access, auction lifecycle and bidding are not implemented. Future bids require atomic PostgreSQL transactions/locks, server time, idempotency and committed Realtime broadcasts. Money uses exact integer minor units. Add those services and database policies only in their authorized phases.

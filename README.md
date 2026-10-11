@@ -71,11 +71,13 @@ npm run build
 
 `check` runs lint, strict types and all Vitest tests. `test:db` runs the SQL/RLS suite alone. `db:types` regenerates migration-derived database types; check drift afterward.
 
-`test:e2e` runs two production suites at http://127.0.0.1:3100: deliberately unconfigured, then a test-only loopback REST/Storage adapter backed by PGlite executing the actual migrations/RLS. It checks discovery, filters, pagination, gallery/visibility, 360px mobile, 768px tablet and desktop layouts alongside guest Auth regressions. Keep port 3100 free. It changes child-process settings only, leaves environment files untouched, stops its servers and restores the normal configured build in a finally block. A forcibly interrupted runner may require `npm run build` manually. It does not test successful provider-backed signup/login/recovery.
+`test:e2e` runs three production modes at http://127.0.0.1:3100: deliberately unconfigured, a loopback marketplace REST/Storage adapter backed by PGlite executing actual migrations/RLS, and controlled Auth/profile transport for the focused auth-experience browser suite. The first two cover discovery, filters, gallery/visibility and guest Auth regressions; the third checks forms, email instructions/cooldowns, safe returns, profile saving and logout UI using synthetic responses. Keep port 3100 free. It changes child-process settings only, leaves environment files untouched, closes resources and restores the normal configured build in finally blocks. A forcibly interrupted runner may require `npm run build` manually. The Auth transport is not GoTrue/SMTP and does not complete provider-backed signup/login/recovery/session acceptance.
 
 If bundled Chromium is unavailable and Google Chrome is installed, set PLAYWRIGHT_CHANNEL=chrome (PowerShell: `$env:PLAYWRIGHT_CHANNEL='chrome'; npm.cmd run test:e2e`). This uses isolated contexts, not your personal browser profile.
 
-PGlite tests execute real PostgreSQL using synthetic Auth/Storage schemas. Browser fixture transport simulates only the REST/Storage operations used here; it is not actual PostgREST/Storage/GoTrue/SMTP hosting. Seeds under tests/fixtures are explicitly test-only, never migrations or application fallbacks. Provider interactions in unit tests are mocked. PHASE_LOG.md distinguishes those boundaries.
+`npm run test:e2e -- --auth-only` runs only the controlled Auth UI mode and restores the ordinary build afterward. It is useful for focused form/cooldown changes; run the full suite for broader regressions.
+
+PGlite tests execute real PostgreSQL using synthetic Auth/Storage schemas. The marketplace browser adapter simulates REST/Storage transport; the separate Auth UI adapter simulates Auth/private-profile responses. Neither is actual PostgREST/Storage/GoTrue/SMTP hosting. Seeds under tests/fixtures and these loopback adapters are explicitly test-only, never migrations or application fallbacks. Provider interactions in unit tests are mocked. PHASE_LOG.md distinguishes those boundaries.
 
 ## Browser hydration troubleshooting
 
@@ -107,6 +109,8 @@ Target Vercel's Next.js preset and Node 24 with npm ci/build. No deployment was 
 Read [AGENTS.md](AGENTS.md), [Architecture](docs/ARCHITECTURE.md), [Database](docs/DATABASE.md), [Roadmap](docs/ROADMAP.md), [Phase log](docs/PHASE_LOG.md) and [Decisions](docs/DECISIONS.md).
 
 ## Selected visual design
+
+UI Redesign Stage 4 refines existing authentication/account screens using the same design system. Registration asks for email/password, with optional name entry in the profile; password visibility, inline guidance, email instructions/cooldowns and safe return links improve the journey. The account page separates profile/access and collapses optional dealer details. Existing SSR/confirmation/recovery, owned writes and grant checks remain. [Stage 4 files, checks, screenshots and provider limits](docs/design/stage-4-2026-10-11/implementation.md) distinguish controlled UI tests from actual Auth acceptance. `npm run qa:auth` captures isolated production states on port 3105 and restores the ordinary build; keep it separate from other builds/E2E and leave that port free. Stop before any further UI stage or seller-management phase.
 
 UI Redesign Stage 3 refines `/vehicles/[slug]`: a photo-first gallery with touch/keyboard navigation and full-screen viewing, clear asking price and bidding-unavailable information, early condition disclosures, readable specifications and real related cards. Browse links retain validated search context. [Stage 3 files, decisions, results and screenshots](docs/design/stage-3-2026-10-11/implementation.md) record five-width/state QA and remaining acceptance limits. `npm run qa:details` captures isolated production states on port 3104 and restores the ordinary build; run it separately from builds/E2E and keep that port free. Further UI stages require a new instruction.
 

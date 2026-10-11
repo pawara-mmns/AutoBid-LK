@@ -12,6 +12,6 @@ export function SignOutButton() {
   const copy = getDictionary().auth;
   return <form action={action} className="space-y-3">
     <FormFeedback state={state} />
-    <Button type="submit" variant="outline" disabled={pending}>{pending ? copy.pending : copy.signOut}</Button>
+    <Button type="submit" variant="outline" className="w-full" disabled={pending} aria-busy={pending}>{pending ? copy.pending : copy.signOut}</Button>
   </form>;
 }

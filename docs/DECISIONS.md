@@ -50,6 +50,15 @@ Use suppressHydrationWarning only on the root body for the observed extension-ge
 4. **Safe return navigation and incremental related reads.** Carry canonical catalog context through an optional `from`, validate with the bounded catalog schema and accept only `/vehicles`. Reuse the existing five-row related query, exclude the current listing and show at most four shared cards behind local Suspense. Empty/error sections are omitted.
 5. **Evidence before handoff.** Isolated actual PostgreSQL/RLS fixtures and headless Chrome cover five widths, transport failures, image states, keyboard/touch and selected-image request budgets. Wait for related content for settled screenshots; capture deliberate loading separately. Provider/Auth/Storage/SMTP and full screen-reader/translation acceptance remain pending. See docs/design/stage-3-2026-10-11/implementation.md.
 
+## 2026-10-11 — UI redesign Stage 4
+
+1. **Retain email/password and security contracts.** No verified social/SMS setup exists. Preserve clients, Proxy refresh, independent confirmed-user guards, trusted callback origins, PKCE/token-hash verification, RLS and current admin grants. No cosmetic migration or Auth configuration change.
+2. **Defer optional profile entry.** Signup collects only email/password; send the existing empty optional name rather than remove or duplicate its service contract. Keep 12–128-character passwords and the existing recovery confirmation field. Existing legal links remain; no new required agreement is invented.
+3. **Shared validation and focused controls.** Use existing Button/Input plus PasswordField, shared Zod schemas and one allowlisted FormData mapper. Show specific inline errors and first-invalid focus, reset secrets after server responses, retain non-secret profile values and guard duplicate Auth submissions synchronously.
+4. **Truthful email instructions and resend.** Only service success reveals the notice, not verified status. Generic signup/recovery responses avoid account enumeration. Real SDK resend is signup-only; recovery repeats the established reset operation. Calculate the UI cooldown from a deadline to tolerate delayed timers. Provider rate limits remain authoritative.
+5. **Safe navigation, restrained account.** Retain only established account/password/admin return paths across auth screens and redirect validated customers past unnecessary forms. Keep neutral My account public navigation without session lookup/polling. AccountView displays own permitted fields, actual confirmed email and grant-dependent admin entry; optional dealer details remain expandable and separate.
+6. **Separate UI transport evidence from provider acceptance.** New isolated Auth/profile fixture drives real SDK/actions and rendered UI using synthetic responses; public SQL/RLS checks remain real. No GoTrue/signing/SMTP claim. CLI is unavailable and Docker daemon is stopped, so actual disposable-provider acceptance remains pending. See docs/design/stage-4-2026-10-11/implementation.md.
+
 ## Official setup references consulted
 
 - [Next.js installation](https://nextjs.org/docs/app/getting-started/installation)

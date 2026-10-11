@@ -1,4 +1,14 @@
-# Design QA — AutoBid LK, UI Stage 3
+# Design QA — AutoBid LK, UI Stage 4
+
+2026-10-11, Asia/Colombo. Result: passed for the authorized authentication/basic account redesign within development Phase 2. [Implementation, complete file inventory and evidence](docs/design/stage-4-2026-10-11/implementation.md).
+
+Actually inspected baseline phone/desktop and redesigned forms/account at 360, 390, 768, 1280 and 1440px. Quiet centered forms, visible labels/eye controls, one primary action, clear inline guidance and separated account profile/access match the existing identity. Registration defers optional name entry; optional dealer details are collapsed. Reviewed email instructions, recovery, visible/mismatched password, validation, loading, rate-limited, expired-link and unavailable states. 57 automated capture observations passed with no page overflow, inspected controls below 44px or runtime/hydration errors. 200% root-text and artificially lengthened copy reflow passed; these are not reviewed translation or screen-reader acceptance.
+
+Final lint/types/153 unit-PostgreSQL tests and database-type drift passed. Full production browser suites: 25 unconfigured passes/39 intentional skips; 48 marketplace-fixture passes/16 intentional skips; 14 controlled Auth UI passes. Cooldown uses a deadline and mount initialization; focused final Auth checks cover that refinement. All production builds passed; normal configuration restored and temporary resources closed.
+
+Auth/profile transport uses synthetic responses only, explicitly separate from real Supabase Auth, signing, SMTP, recovery/refresh/revocation acceptance. CLI is unavailable and Docker daemon is stopped. Actual provider, real-device/keyboard/network, screen-reader/WCAG and reviewed Sinhala/Tamil acceptance remain pending. No schema/provider/live change, commit or deployment. Stop after Stage 4; further stages require a new instruction.
+
+## Historical Stage 3 record
 
 2026-10-11, Asia/Colombo. Result: passed for the authorized vehicle details redesign within development Phase 2. [Implementation, file inventory, decisions and evidence](docs/design/stage-3-2026-10-11/implementation.md).
 

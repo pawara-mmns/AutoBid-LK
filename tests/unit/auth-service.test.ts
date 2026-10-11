@@ -1,9 +1,9 @@
 import type { User } from "@supabase/supabase-js";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { authenticate, signOut } from "@/features/auth/service";
+import { authenticate, resendConfirmation, signOut } from "@/features/auth/service";
 import { accountPermissions, getValidatedUser, hasAdminGrant } from "@/features/auth/authorization";
 import { confirmAuthLink } from "@/features/auth/confirmation";
-import { authDestination } from "@/features/auth/redirects";
+import { authDestination, authLink } from "@/features/auth/redirects";
 import { saveOwnProfile } from "@/features/profiles/service";
 import type { AppSupabaseClient } from "@/features/auth/types";
 
@@ -11,6 +11,7 @@ const user: User = { id: "00000000-0000-4000-8000-000000000001", aud: "authentic
 const auth = {
   getUser: vi.fn(), signInWithPassword: vi.fn(), signUp: vi.fn(), resetPasswordForEmail: vi.fn(),
   updateUser: vi.fn(), signOut: vi.fn(), exchangeCodeForSession: vi.fn(), verifyOtp: vi.fn(),
+  resend: vi.fn(),
 };
 const query = { select: vi.fn(), update: vi.fn(), insert: vi.fn(), eq: vi.fn(), single: vi.fn(), maybeSingle: vi.fn() };
 const from = vi.fn();
@@ -21,7 +22,7 @@ beforeEach(() => {
   vi.resetAllMocks();
   factory.mockResolvedValue(client);
   auth.getUser.mockResolvedValue({ data: { user }, error: null });
-  for (const method of [auth.signInWithPassword, auth.signUp, auth.resetPasswordForEmail, auth.updateUser, auth.signOut, auth.exchangeCodeForSession, auth.verifyOtp]) method.mockResolvedValue({ data: {}, error: null });
+  for (const method of [auth.signInWithPassword, auth.signUp, auth.resetPasswordForEmail, auth.updateUser, auth.signOut, auth.exchangeCodeForSession, auth.verifyOtp, auth.resend]) method.mockResolvedValue({ data: {}, error: null });
   from.mockReturnValue(query);
   for (const method of [query.select, query.update, query.eq]) method.mockReturnValue(query);
   query.single.mockResolvedValue({ data: { id: user.id }, error: null });
@@ -74,6 +75,19 @@ describe("authentication service", () => {
     auth.signOut.mockResolvedValue({ error: { message: "provider failure" } });
     expect(await signOut(factory)).toEqual({ status: "error", message: "signOutFailed" });
   });
+  it("resends only signup confirmation with validated input and trusted origin", async () => {
+    expect(await resendConfirmation({ email: "bad", type: "invite" }, factory)).toMatchObject({ status: "error" });
+    expect(factory).not.toHaveBeenCalled();
+    expect(await resendConfirmation({ email: user.email }, factory)).toEqual({ status: "success", message: "checkEmail" });
+    expect(auth.resend).toHaveBeenCalledWith({ type: "signup", email: user.email, options: { emailRedirectTo: "http://localhost:3000/auth/callback" } });
+  });
+  it("handles resend throttling, unavailable configuration and private errors", async () => {
+    expect(await resendConfirmation({ email: user.email }, async () => null)).toMatchObject({ message: "unavailable" });
+    auth.resend.mockResolvedValue({ error: { status: 429, message: "private detail" } });
+    expect(await resendConfirmation({ email: user.email }, factory)).toMatchObject({ message: "rateLimited" });
+    auth.resend.mockRejectedValue(new Error("private token"));
+    expect(await resendConfirmation({ email: user.email }, factory)).toMatchObject({ message: "tryAgain" });
+  });
 });
 
 describe("authorization and owned profile writes", () => {
@@ -118,6 +132,12 @@ describe("authorization and owned profile writes", () => {
 });
 
 describe("email links and redirects", () => {
+  it("retains only allowed destinations across auth screen links", () => {
+    expect(authLink("sign-up", "/admin")).toBe("/sign-up?next=%2Fadmin");
+    expect(authLink("forgot-password", "/account/password")).toBe("/forgot-password?next=%2Faccount%2Fpassword");
+    expect(authLink("sign-in", "https://evil.invalid")).toBe("/sign-in");
+    expect(authLink("sign-in", ["/admin", "/account"])).toBe("/sign-in");
+  });
   it.each(["https://evil.invalid", "//evil.invalid", "/\\evil.invalid", "/account?admin=true", "%2f%2fevil.invalid", null])("never redirects to untrusted destinations", (value) => {
     expect(authDestination(value)).toBe("/account");
   });

@@ -25,7 +25,8 @@ test("missing configuration disables forms safely and permits account navigation
   await expect(page.getByRole("alert").filter({ hasText: "Accounts are temporarily unavailable." })).toBeVisible();
   await expect(page.getByRole("button", { name: "Sign in", exact: true })).toBeDisabled();
   await page.getByRole("link", { name: "Create an account" }).click();
-  await expect(page.getByLabel("Your name (optional)")).toBeVisible();
+  await expect(page.getByLabel("Your name (optional)")).toHaveCount(0);
+  await expect(page.getByLabel("Email address", { exact: true })).toBeVisible();
   await expect(page.getByRole("button", { name: "Create account" })).toBeDisabled();
   await page.screenshot({ path: test.info().outputPath("sign-up.png"), fullPage: true });
   await page.getByRole("link", { name: "Already have an account? Sign in" }).click();

@@ -1,11 +1,11 @@
 import "server-only";
 import { getValidatedUser } from "@/features/auth/authorization";
-import { passwordSchema, recoverySchema, signInSchema, signUpSchema, type AuthMode } from "@/features/auth/schemas";
+import { authSchemas, passwordSchema, recoverySchema, signInSchema, signUpSchema, type AuthMode } from "@/features/auth/schemas";
 import type { AuthResult, ClientFactory } from "@/features/auth/types";
 import { publicEnv } from "@/lib/env";
 
 export async function authenticate(mode: AuthMode, input: unknown, createClient: ClientFactory): Promise<AuthResult> {
-  const schema = { "sign-in": signInSchema, "sign-up": signUpSchema, recovery: recoverySchema, password: passwordSchema }[mode];
+  const schema = authSchemas[mode];
   const parsed = schema.safeParse(input);
   if (!parsed.success) {
     return { status: "error", message: "invalidInput", fields: [...new Set(parsed.error.issues.map((issue) => String(issue.path[0] ?? "")))] };
@@ -56,5 +56,18 @@ export async function signOut(createClient: ClientFactory): Promise<AuthResult> 
   try {
     const { error } = await client.auth.signOut({ scope: "local" });
     return error ? { status: "error", message: "signOutFailed" } : { status: "success" };
+  } catch { return { status: "error", message: "tryAgain" }; }
+}
+
+export async function resendConfirmation(input: unknown, createClient: ClientFactory): Promise<AuthResult> {
+  const parsed = recoverySchema.safeParse(input);
+  if (!parsed.success) return { status: "error", message: "invalidInput", fields: ["email"] };
+  const client = await createClient();
+  if (!client) return { status: "error", message: "unavailable" };
+  try {
+    const { error } = await client.auth.resend({ type: "signup", email: parsed.data.email,
+      options: { emailRedirectTo: new URL("/auth/callback", publicEnv.NEXT_PUBLIC_SITE_URL).toString() } });
+    if (error) return { status: "error", message: error.status === 429 ? "rateLimited" : "signUpFailed" };
+    return { status: "success", message: "checkEmail" };
   } catch { return { status: "error", message: "tryAgain" }; }
 }

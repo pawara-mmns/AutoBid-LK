@@ -1,0 +1,348 @@
+{
+  "observations": [
+    {
+      "name": "sign-in",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "sign-up",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "forgot-password",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "account",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "password",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "sign-in",
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "sign-up",
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "forgot-password",
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "account",
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "password",
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "sign-in",
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "sign-up",
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "forgot-password",
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "account",
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "password",
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "sign-in",
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "sign-up",
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "forgot-password",
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "account",
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "password",
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "sign-in",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "sign-up",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "forgot-password",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "account",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "password",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "validation",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "confirmation-email",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "recovery-email",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "credentials-error",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "rate-limit",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "pending",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "profile-validation",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "dealer-expanded",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "password-visible",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "password-mismatch",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "password-saved",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "expired-link",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "validation",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "confirmation-email",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "recovery-email",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "credentials-error",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "rate-limit",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "pending",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "profile-validation",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "dealer-expanded",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "password-visible",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "password-mismatch",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "password-saved",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "expired-link",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "200-percent-text",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "long-copy-stress",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "unavailable-sign-in",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "unavailable-sign-up",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "unavailable-forgot-password",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "unavailable-sign-in",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "unavailable-sign-up",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "unavailable-forgot-password",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    }
+  ],
+  "errors": [],
+  "boundary": "Simulated Auth/profile transport; not actual provider acceptance"
+}

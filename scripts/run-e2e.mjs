@@ -24,14 +24,24 @@ async function run(args, childEnv = env) {
 // Public NEXT_PUBLIC_* values are fixed at build time. Restore the normal build
 // even after a failure so the ephemeral fixture URL never remains in .next.
 try {
-  await run(["run", "build"]);
-  await run(["exec", "--", "playwright", "test"]);
-  const { startMarketplaceFixture } = await import("./marketplace-fixture.mjs");
-  const fixture = await startMarketplaceFixture();
+  if (!process.argv.includes("--auth-only")) {
+    await run(["run", "build"]);
+    await run(["exec", "--", "playwright", "test"]);
+    const { startMarketplaceFixture } = await import("./marketplace-fixture.mjs");
+    const fixture = await startMarketplaceFixture();
+    try {
+      const fixtureEnv = { ...env, NEXT_PUBLIC_SUPABASE_URL: fixture.url, NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: "sb_publishable_autobid_fixture_only", E2E_AUTH_UNCONFIGURED: "", E2E_MARKETPLACE_FIXTURE: "1" };
+      process.stdout.write("Testing isolated fixture listings; these are not real marketplace data.\n");
+      await run(["run", "build"], fixtureEnv);
+      await run(["exec", "--", "playwright", "test"], fixtureEnv);
+    } finally { await fixture.close(); }
+  }
+  const { startAuthFixture } = await import("./auth-fixture.mjs");
+  const authFixture = await startAuthFixture();
   try {
-    const fixtureEnv = { ...env, NEXT_PUBLIC_SUPABASE_URL: fixture.url, NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: "sb_publishable_autobid_fixture_only", E2E_AUTH_UNCONFIGURED: "", E2E_MARKETPLACE_FIXTURE: "1" };
-    process.stdout.write("Testing isolated fixture listings; these are not real marketplace data.\n");
-    await run(["run", "build"], fixtureEnv);
-    await run(["exec", "--", "playwright", "test"], fixtureEnv);
-  } finally { await fixture.close(); }
+    const authEnv = { ...env, NEXT_PUBLIC_SUPABASE_URL: authFixture.url, NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: "sb_publishable_autobid_fixture_only", E2E_AUTH_UNCONFIGURED: "", E2E_AUTH_FIXTURE: "1" };
+    process.stdout.write("Testing controlled Auth/profile UI transport; not actual GoTrue/SMTP acceptance.\n");
+    await run(["run", "build"], authEnv);
+    await run(["exec", "--", "playwright", "test", "tests/e2e/auth-experience.spec.ts"], authEnv);
+  } finally { await authFixture.close(); }
 } finally { await run(["run", "build"], process.env); }

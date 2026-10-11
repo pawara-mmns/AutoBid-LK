@@ -1,0 +1,54 @@
+{
+  "observations": [
+    {
+      "name": "sign-in",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "sign-up",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "forgot-password",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "account",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "sign-in",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "sign-up",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "forgot-password",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "account",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    }
+  ],
+  "errors": [],
+  "boundary": "Simulated Auth/profile transport; not actual provider acceptance"
+}

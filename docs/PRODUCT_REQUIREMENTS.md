@@ -18,6 +18,10 @@ AutoBid LK will provide an accessible vehicle auction and buying marketplace for
 
 UI Stage 3 uses approved public data only: photo-first responsive gallery with touch/keyboard/full-screen navigation, exact labelled asking price, clear unavailable bidding, early seller-declared defects/history, essential specifications, description and independent inspection guidance. Missing values stay unconfirmed; approval never implies a mechanical inspection. Related cards come from existing bounded public reads; empty related results are omitted. Browse return context is validated. No private seller information, new schema or transaction workflow is introduced. Five-width/state evidence and remaining provider/accessibility/localization acceptance are recorded in docs/design/stage-3-2026-10-11/implementation.md.
 
+## Authentication and basic account — current Phase 2 UI
+
+UI Stage 4 refines existing email/password and account flows without changing providers, confirmation/password requirements or permissions. Registration collects email/password; optional name belongs in the profile. Password visibility, inline guidance, non-enumerating email instructions, resend cooldown and safe return navigation improve usability. Account details/access and optional dealer information remain separate. No unverified social/SMS method, private-document request or future bids/vehicles destination is offered. Actual provider lifecycle acceptance remains pending; see docs/design/stage-4-2026-10-11/implementation.md.
+
 ## People and permissions
 
 Guests browse public data. Buyers save vehicles, place verified bids and track purchases. Sellers create listings, manage approval/auction status and completed sales. Verified dealers participate as commercial buyers. Admins review identities/listings and manage users, auctions, disputes and operations. A person can buy and sell using the same account; permissions are enforced server-side and in database policies, never accepted from client claims.
