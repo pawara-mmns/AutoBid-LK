@@ -1,5 +1,15 @@
 # Architecture decisions
 
+## 2026-10-11 — Stage 5 seller management
+
+1. **Separate private intake from approved discovery.** Public listings have no owner or reserve/contact information. Private seller submissions avoid widening public grants/DTOs or inventing publication. Only draft and pending review are supported; review decisions arrive in the next authorized phase.
+2. **Controlled operations.** Customers SELECT owned rows and invoke narrow SQL RPCs without direct table writes. Fixed search paths, `auth.uid()` ownership, parent locks, revisions, bounded fields, quotas and SQL final validation protect direct API callers as well as the UI. Repeated creation/submission is idempotent; no elevated key is configured.
+3. **Recoverable partial drafts.** Persist incomplete details/last step after 800ms, serialize saves, drain newer edits before navigation/submission and surface conflicts. Retry keeps current values. No private data goes into browser storage. Guests sign in before entering details.
+4. **Canonical exact prices.** Reuse BigInt-based LKR helpers, store bounded integer cents, keep minimum private and validate minimum <= expected <= optional Buy Now. Durations 1/3/7 (default 3) are preferences only.
+5. **Untrusted private media.** Owner Storage access cannot itself certify pixels. Byte decoding/re-encoding, immutable paths, quotas, private preview authorization and final checks prevent unsafe/public rendering through the app. Future publication must validate again. Sharp is an explicit pinned dependency because MIME/header checks cannot decode/optimize photos. Sources: [Supabase private buckets](https://supabase.com/docs/guides/storage/buckets/fundamentals), [Storage RLS](https://supabase.com/docs/guides/storage/security/access-control), [Sharp input limits](https://sharp.pixelplumbing.com/api-constructor/).
+6. **Honest commitments.** Submission records self-declared ownership/accuracy and a versioned intake agreement. Typed phones stay unverified. Fees/auction commitments require future approval and agreement before publication. Existing validated account email is reused.
+7. **Verification isolation.** Seller browser checks persist drafts and execute Storage policies in actual PostgreSQL with synthetic Auth/object APIs. This remains test-only. Real provider lifecycle/Storage/SMTP, reviewed translations, device-camera and deployment limits remain acceptance gates. Stop after Stage 5.
+
 ## 2026-10-09 — Phase 0
 
 1. **Feature-based modular monolith.** Next.js owns routing/rendering; domain services/schemas will live in feature modules. Add folders when used so the foundation does not imply absent features exist.

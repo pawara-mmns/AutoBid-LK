@@ -38,6 +38,10 @@ The listing wizard has exactly five customer-facing steps:
 
 Save drafts and validate each step. Use plain explanations and safe defaults instead of exposing complex auction configuration. Identity and vehicle ownership verification follow submission and precede publication. Rejections need clear reasons and a correction path.
 
+Stage 5 implements these five steps for authenticated used-passenger-car sellers. Incomplete owned drafts and the current step persist in PostgreSQL. Accident, flood, mechanical and finance disclosures remain separate. Four guided photos are required for submission, with up to 12 private photos including damage. Prices are exact LKR cents; the minimum remains private. Duration is a future preference (1/3/7 days, default 3), never an active auction. Final contact/ownership declarations, intake terms and accuracy are required. Typed phone numbers stay unverified.
+
+My Vehicles shows only the account's own rows, actual cover/year/expected price/date and genuine Draft or Submitted for Review status. Only drafts are editable. Review requests/approval/rejection/publication belong to the next authorized Admin & Verification phase; they are not simulated here. No sensitive browser-only draft is authoritative, and public browsing remains account-free.
+
 ## Domain modules
 
 Authentication/profiles; vehicle catalog/discovery; seller listing/drafts; seller/vehicle verification; auction lifecycle; secure bidding; notifications/watchlists; winner/purchase workflow; moderation/audit logging; localization/PWA. See the roadmap for implementation order.

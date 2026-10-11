@@ -1,4 +1,28 @@
-# Database foundation and public marketplace
+# Database foundation, marketplace and seller intake
+
+## Stage 5 private seller intake
+
+Three additional versioned migrations extend the existing foundations:
+
+- `202610110001_seller_foundation.sql`: private `seller_listings`, profile owner FK, bounded draft JSONB, exact price columns, revision/last step/timestamps, owner SELECT and create/save RPCs.
+- `202610110002_seller_photos.sql`: private `seller_listing_photos`, ordered slots/cover, `seller-draft-photos` bucket, owned Storage policies, photo RPC and durable `seller_upload_limits`.
+- `202610110003_seller_submission.sql`: final SQL validation, idempotent pending transition, submitted timestamp, intake terms version and explicitly false phone verification.
+
+This is private intake, not a duplicate public catalog. Existing `vehicle_listings`/`vehicle_media` remain the approved public projection and gain no owner, contact, minimum price or submission join. Stage 5 never copies an intake record into them. All five migrations pass isolated PostgreSQL execution; none was applied to a real project during Stage 5.
+
+Details accept only allowlisted strings, at most 1,000 characters each and 12KB total. Owner/status/revision/timestamps/phone verification cannot be mass-assigned. Money exists only in dedicated integer `bigint` columns, 1–1,000,000,000,000 LKR cents. Minimum cannot exceed expected price; Buy Now cannot be below expected price. Incomplete drafts may omit prices; submission requires expected/minimum. The whole table, including minimum price, is owner-private and never part of buyer responses.
+
+Customers have only SELECT on owned listing/photo rows, with no direct insert/update/delete grants. Fixed-search-path security-definer RPCs derive ownership from `auth.uid()`, lock rows, allow only draft changes and enforce revision matching. Create locks the profile, caps unfinished drafts at 25 and creations at 20/24h, and treats repeated owned UUIDs idempotently. Save changes only bounded details/prices/last step. SQL submission requires complete supported vehicle/location/condition/history/contact/terms/prices and four guided Storage objects, timestamps once, increments revision and returns the same pending row on retry. Server operations independently require confirmed, non-anonymous Auth identity and validate complete schemas/actual photos. Only `draft -> pending_review` exists. There is no customer approval, publication, verification result or review-reason write.
+
+Photo rows use immutable `owner/listing/photoUUID.jpg` paths, slots front/back/interior/dashboard/extra, positions 0–11 and one cover. Uploaded metadata is not a content certificate: ordinary owner Storage/RPC input remains untrusted. The app decodes/re-encodes each preview and downloads/validates actual bytes at final submission. SQL also checks four distinct guided slots with matching objects. Future publication must revalidate content and authorization, never treat an uploaded marker as approval.
+
+The private bucket limits JPG/PNG/WebP to 8MiB. Object SELECT joins the owned listing/photo. INSERT requires an owned editable draft and pending reserved path. DELETE requires an owned draft. No UPDATE/upsert policy exists; pending submissions cannot be modified/deleted by customers. Metadata removal requires prior object deletion. Photo operations lock the parent; completion retries preserve cover. At most 12 reservations exist per draft, with an active 24/minute cap and a durable per-owner 60/hour attempt counter independent of deleted reservations. No elevated client is configured.
+
+Handlers bound actual request bytes and reject malformed, SVG, animated or oversized raster data. Sharp caps source work at 24 million pixels, corrects orientation, strips metadata and stores maximum-1600px JPEGs. Private previews use no-store/nosniff/no-referrer and bypass shared image optimization. Interrupted reservations remain owner-visible with remove/retry instructions; failed uploads are cleaned up where possible. Trusted orphan-object cleanup after account removal, retention rules, platform body limits and provider quotas remain operational release checks.
+
+PostgreSQL/RLS checks are real isolated SQL; synthetic Auth/Storage schemas and loopback transports do not validate hosted Supabase Auth/PostgREST/Storage. Apply all five migrations only to a separately authorized disposable environment and verify actual APIs, ownership, upload failures/quotas/headers and non-public submission before release. Detailed evidence: `docs/design/stage-5-2026-10-11/implementation.md`.
+
+## Earlier account and public foundations
 
 Versioned migrations are `202610090001_auth_foundation.sql` (private accounts) and `202610090002_public_marketplace.sql` (minimal public catalog/media/private photo bucket). Both execute successfully in isolated PostgreSQL tests. **Neither was applied to a real Supabase project during this work.** Public settings now exist, but read-only REST checks returned PGRST205 for known tables, including profiles, vehicles, vehicle_listings and vehicle_media. The app handles this safely. No production listings, operator approval, remote bucket provisioning or auction schema was created.
 

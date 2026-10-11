@@ -1,6 +1,6 @@
 # AutoBid LK
 
-A Sri Lanka-first vehicle auction and buying marketplace, developed incrementally. Phase 0 supplies the responsive foundation; Phase 1 supplies authentication/private profiles; Phase 2 adds public vehicle discovery, URL filters, pagination, details and approved photos. Seller submission, admin review, bidding, purchase workflows and payments are not implemented. **This is not a launched or production-ready marketplace.**
+A Sri Lanka-first vehicle auction and buying marketplace, developed incrementally. Phase 0 supplies the responsive foundation; Phase 1 supplies authentication/private profiles; Phase 2 adds public vehicle discovery, URL filters, pagination, details and approved photos. Stage 5 (development Phase 3) adds private owned seller drafts, photos, pricing, submission for review and My Vehicles. Admin review, publication from seller submissions, bidding, purchase workflows and payments are not implemented. **This is not a launched or production-ready marketplace.**
 
 Phase 2 source and isolated checks are complete. Public Supabase settings exist in the ignored local environment. Earlier read-only REST checks returned PGRST205 for known tables; the latest Stage 1 normal-build captures show an empty approved-listing state. No migrations were applied during this UI work. Actual Supabase Auth, PostgREST and Storage acceptance remains pending; the app shows friendly unavailable feedback when configuration or queries fail. Test fixtures are never presented by a normal build.
 
@@ -47,16 +47,21 @@ Local confirmation/recovery templates are supplied in supabase/templates/. For h
 | /vehicles/[slug] | Public approved listing details; hidden/unknown/invalid identifiers return 404 |
 | /vehicle-images/[listingId]/[photoId] | Controlled approved raster photo delivery from private Storage |
 | /about, /contact, /help, /terms, /privacy | Functioning pre-release information pages; policies need release review |
-| /sell | Explanation of future selling steps; no submission workflow |
+| /sell | Public seller introduction; sign-in required before creating a private draft |
+| /seller/vehicles | Confirmed seller's own vehicles, 25 per page |
+| /seller/vehicles/new | Confirmed account; idempotent draft creation |
+| /seller/vehicles/[id] | Owned five-step wizard or locked submission details; unrelated/invalid IDs return 404 |
+| /seller/vehicles/[id]/photos | Same-origin, authenticated owned draft photo upload/management |
+| /seller/vehicles/[id]/photos/[photoId] | Authorized private preview with no-store; unrelated access returns 404 |
 | /sign-up, /sign-in, /forgot-password | Public forms; unavailable safely without configuration |
 | /auth/confirm, /auth/callback | Email-token or PKCE-code verification; fixed safe redirects |
 | /account | Confirmed authenticated account; private own profile and dealer request |
 | /account/password | Confirmed authenticated account; matching password update |
 | /admin | Confirmed account with a current database admin grant; access entry only |
 
-One account can buy and sell. A submitted dealer business name stays pending. Users cannot set admin membership or dealer verification. Sign-out is scoped to the current device. Full Sinhala/Tamil, PWA, seller management and auctions remain future phases.
+One account can buy and sell. A submitted dealer business name stays pending. Users cannot set admin membership or dealer verification. Sign-out is scoped to the current device. Full Sinhala/Tamil, PWA, administrative verification and auctions remain future phases.
 
-Only used passenger cars are supported; other categories are visibly unavailable. Prices are explicitly seller asking prices in exact LKR cents. Condition/history is seller-declared; approval for display is not an inspection claim. The two migrations create private account foundations and the minimum public read model, media and private photo bucket. See [Database](docs/DATABASE.md) for visibility, relationships, limits and photo cache behavior.
+Only used passenger cars are supported; other categories are visibly unavailable. Public prices are seller asking prices in exact LKR cents. Draft expected/minimum/Buy Now prices remain private. Condition/history is seller-declared; approval for display is not an inspection claim. Five migrations create account/public foundations and private seller intake. See [Database](docs/DATABASE.md) for ownership, visibility, limits and photo cache behavior.
 
 ## Verification
 
@@ -93,7 +98,7 @@ To check development-mode hydration explicitly, set E2E_DEV_SERVER=1 and run `np
 
 After approved local/development configuration:
 
-1. Review and apply both migrations to an authorized disposable local/development Supabase database; verify schema, grants, facets RPC and private vehicle-photos bucket with actual provider APIs.
+1. Review and apply all five migrations to an authorized disposable local/development Supabase database; verify schema, grants, facets/seller RPCs and both private photo buckets with actual provider APIs.
 2. Create synthetic test accounts through /sign-up. Confirm an email, sign in, save own details, sign out and check expired/revoked sessions.
 3. Request password recovery, consume its email link, save a new password and verify the old password no longer signs in. Replay/expire links and confirm safe failure.
 4. Confirm account A cannot read/write account B; metadata edits cannot create admin grants; dealer requests cannot self-verify.
@@ -110,7 +115,11 @@ Read [AGENTS.md](AGENTS.md), [Architecture](docs/ARCHITECTURE.md), [Database](do
 
 ## Selected visual design
 
-UI Redesign Stage 4 refines existing authentication/account screens using the same design system. Registration asks for email/password, with optional name entry in the profile; password visibility, inline guidance, email instructions/cooldowns and safe return links improve the journey. The account page separates profile/access and collapses optional dealer details. Existing SSR/confirmation/recovery, owned writes and grant checks remain. [Stage 4 files, checks, screenshots and provider limits](docs/design/stage-4-2026-10-11/implementation.md) distinguish controlled UI tests from actual Auth acceptance. `npm run qa:auth` captures isolated production states on port 3105 and restores the ordinary build; keep it separate from other builds/E2E and leave that port free. Stop before any further UI stage or seller-management phase.
+Stage 5 implements the seller experience using the existing design system and Supabase SSR client. Follow exactly five steps, resume the saved step, save incomplete drafts automatically, manage up to 12 private photos and submit once into a locked pending state. Prices use exact cents; the private minimum is never joined into public reads. Phone numbers stay unverified. Seller fees/auction commitments require approval and agreement before future publication; no payment is collected here.
+
+Run `npm run test:e2e:seller` for isolated production seller checks and `npm run qa:seller` for five-width captures on port 3106. Use the documented Chrome fallback when needed. Both restore the normal build. The seller transport executes actual migrated PostgreSQL/RLS for drafts and Storage object policies, with simulated Auth/PostgREST/object transport. It is not hosted-provider acceptance. [Stage 5 inventory, evidence and remaining gates](docs/design/stage-5-2026-10-11/implementation.md) document the distinction. No migration was applied to a real project. Stop after Stage 5.
+
+UI Redesign Stage 4 refines existing authentication/account screens using the same design system. Registration asks for email/password, with optional name entry in the profile; password visibility, inline guidance, email instructions/cooldowns and safe return links improve the journey. The account page separates profile/access and collapses optional dealer details. Existing SSR/confirmation/recovery, owned writes and grant checks remain. [Stage 4 files, checks, screenshots and provider limits](docs/design/stage-4-2026-10-11/implementation.md) distinguish controlled UI tests from actual Auth acceptance. `npm run qa:auth` captures isolated production states on port 3105 and restores the ordinary build; keep it separate from other builds/E2E and leave that port free. Stage 5 subsequently adds the seller functionality described above.
 
 UI Redesign Stage 3 refines `/vehicles/[slug]`: a photo-first gallery with touch/keyboard navigation and full-screen viewing, clear asking price and bidding-unavailable information, early condition disclosures, readable specifications and real related cards. Browse links retain validated search context. [Stage 3 files, decisions, results and screenshots](docs/design/stage-3-2026-10-11/implementation.md) record five-width/state QA and remaining acceptance limits. `npm run qa:details` captures isolated production states on port 3104 and restores the ordinary build; run it separately from builds/E2E and keep that port free. Further UI stages require a new instruction.
 
@@ -118,7 +127,7 @@ UI Redesign Stage 2 refines /vehicles, shareable search/filters/sorts and the sh
 
 The Phase 2 presentation follow-up applies the user-selected Premium Automotive Minimalism direction to existing public marketplace and account-form surfaces. Warm white, charcoal, restrained green and a small gold accent support direct search, readable LKR asking prices and simpler mobile layouts. The homepage photo is generated illustrative imagery, clearly labelled as not a listing; public listing photos still use the existing approved-media boundary. Geist is locally hosted with its license and source recorded in src/app/fonts/.
 
-See [design implementation and assets](docs/design/redesign-2026-10-10/implementation.md) and [visual QA](design-qa.md). The selling page remains information only, with the five planned stages presented as a static list. Provider acceptance gaps and Phase 3 authorization requirements remain unchanged.
+See [original design implementation and assets](docs/design/redesign-2026-10-10/implementation.md) and [visual QA](design-qa.md). At that earlier stage, selling was information only. Stage 5 now connects that introduction to owned private drafts and pending submissions. Provider acceptance remains pending.
 
 UI implementation Stage 1 covered the design system and public homepage only. It added focused header/footer/homepage sections, the hero's clearly unavailable selling action, the requested buyer guide, shared container/type tokens and locally hosted Noto Sans Sinhala/Tamil script fonts alongside Geist. Existing approved-listing queries, cards, search, private access and prior browse/detail work were retained at that stage. [Stage 1 implementation, file inventory and evidence](docs/design/stage-1-2026-10-10/implementation.md) records its five-width/state checks and production test results. Fonts prepare readable script rendering; only English UI is offered.
 
