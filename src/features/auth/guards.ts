@@ -2,8 +2,10 @@ import "server-only";
 import { redirect } from "next/navigation";
 import { getValidatedUser, hasAdminGrant } from "@/features/auth/authorization";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { authDestination } from "@/features/auth/redirects";
 
-export async function requireUser(destination: "/account" | "/account/password" | "/admin" = "/account") {
+export async function requireUser(requestedDestination: string = "/account") {
+  const destination = authDestination(requestedDestination);
   const client = await createServerSupabaseClient();
   if (!client) redirect(`/sign-in?message=unavailable&next=${encodeURIComponent(destination)}`);
   const user = await getValidatedUser(client);
