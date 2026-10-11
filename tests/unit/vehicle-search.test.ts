@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { defaultSearch, parseVehicleSearch, vehiclesUrl, escapeLike, slugSchema } from "@/features/vehicles/search-schema";
+import { defaultSearch, parseVehicleSearch, vehiclesUrl, removeVehicleFilter, escapeLike, slugSchema } from "@/features/vehicles/search-schema";
 import { formatLkr, rupeesToMinor, minorToRupees } from "@/features/vehicles/money";
 
 describe("bounded vehicle search", () => {
@@ -16,6 +16,29 @@ describe("bounded vehicle search", () => {
     const parsed = parseVehicleSearch({ status: "draft", pageSize: "99999" });
     expect(parsed.filters).toEqual(defaultSearch);
     expect(vehiclesUrl(parsed.filters)).toBe("/vehicles");
+  });
+  it("round-trips advanced filters, including zero mileage", () => {
+    const result = parseVehicleSearch({ fuel: "hybrid", transmission: "automatic", minMileage: "0", maxMileage: "45000", sort: "year-desc" });
+    expect(result.valid).toBe(true);
+    const params = Object.fromEntries(new URL(vehiclesUrl(result.filters), "https://example.test").searchParams);
+    expect(parseVehicleSearch(params)).toEqual(result);
+    expect(result.filters.minMileage).toBe(0);
+  });
+  it.each([{ fuel: "hydrogen" }, { transmission: "anything" }, { minMileage: "-1" }, { maxMileage: "3000001" }, { minMileage: "1.5" }, { minMileage: "NaN" }, { minMileage: "45000", maxMileage: "31000" }, { fuel: ["petrol", "diesel"] }])("uses safe defaults for invalid advanced input", (params) => {
+    expect(parseVehicleSearch(params)).toEqual({ valid: false, filters: defaultSearch });
+  });
+  it("removes only the selected filter and resets pagination", () => {
+    const { filters } = parseVehicleSearch({ make: "Toyota", model: "Aqua", district: "Colombo", maxPrice: "2000000.25", page: "2", sort: "price-asc" });
+    const removed = new URL(removeVehicleFilter(filters, "district"), "https://example.test").searchParams;
+    expect(removed.has("district")).toBe(false);
+    expect(removed.has("page")).toBe(false);
+    expect(removed.get("make")).toBe("Toyota");
+    expect(removed.get("maxPrice")).toBe("2000000.25");
+    expect(removed.get("sort")).toBe("price-asc");
+    const brandRemoved = new URL(removeVehicleFilter(filters, "make"), "https://example.test").searchParams;
+    expect(brandRemoved.has("make")).toBe(false);
+    expect(brandRemoved.has("model")).toBe(false);
+    expect(brandRemoved.get("district")).toBe("Colombo");
   });
   it("escapes LIKE wildcards without raw OR filter strings", () => { expect(escapeLike("50%_\\")).toBe("50\\%\\_\\\\"); });
   it.each(["../private", "INVALID", "a", "a/b", "a".repeat(121)])("rejects invalid public slugs", (slug) => { expect(slugSchema.safeParse(slug).success).toBe(false); });

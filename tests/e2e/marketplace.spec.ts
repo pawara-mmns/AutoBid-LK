@@ -11,7 +11,7 @@ test("navigation and all footer/selling links resolve", async ({ page, isMobile 
     await page.getByRole("dialog").getByRole("link", { name: "Browse vehicles" }).click();
     await expect(page.getByRole("dialog")).not.toBeVisible();
   } else await page.getByRole("navigation", { name: "Main navigation", exact: true }).getByRole("link", { name: "Browse vehicles" }).click();
-  await expect(page.getByRole("heading", { name: "Find a vehicle", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Find your vehicle", exact: true })).toBeVisible();
   for (const path of ["/about", "/contact", "/help", "/terms", "/privacy", "/sell"]) {
     const response = await page.goto(path);
     expect(response?.status()).toBe(200);
@@ -118,5 +118,71 @@ test.describe("isolated genuine-query fixtures", () => {
     await expect(page.getByRole("heading", { name: "No vehicles match just yet" })).toBeVisible();
     expect((await request.get(`/vehicle-images/${listing}/20000000-0000-4000-8000-000000000003`)).status()).toBe(404);
     expect((await request.get("/vehicle-images/invalid/invalid")).status()).toBe(404);
+  });
+
+  test("advanced filters, dependent models, clear drafts and URL history work", async ({ page, isMobile }) => {
+    await page.goto("/vehicles");
+    let panel = page.getByRole("complementary", { name: "Filters" });
+    if (isMobile) {
+      await page.getByRole("button", { name: "Filters", exact: true }).click();
+      panel = page.getByRole("dialog");
+    }
+    await panel.getByLabel("Brand", { exact: true }).selectOption("Toyota");
+    await panel.getByLabel("Model", { exact: true }).selectOption("Aqua");
+    await panel.getByLabel("Brand", { exact: true }).selectOption("Suzuki");
+    await expect(panel.getByLabel("Model", { exact: true })).toHaveValue("");
+    await expect(panel.getByLabel("Model", { exact: true }).locator('option[value="Aqua"]')).toHaveCount(0);
+    await panel.getByRole("button", { name: "Clear all", exact: true }).click();
+    await expect(panel.getByLabel("Brand", { exact: true })).toHaveValue("");
+    if (isMobile) await expect(panel).toBeVisible();
+    await panel.locator("summary").click();
+    await panel.getByLabel("Fuel type", { exact: true }).selectOption("hybrid");
+    await panel.getByLabel("Transmission", { exact: true }).selectOption("automatic");
+    await panel.getByLabel("Mileage from (km)", { exact: true }).fill("31000");
+    await panel.getByLabel("Mileage up to (km)", { exact: true }).fill("32000");
+    await panel.getByRole("button", { name: "Apply filters" }).click();
+    await expect(page).toHaveURL(/fuel=hybrid/);
+    await expect(page.locator("main article")).toHaveCount(2);
+    await page.reload();
+    await expect(page.locator("main article")).toHaveCount(2);
+    await page.getByRole("link", { name: "Remove Mileage up to (km): 32000", exact: true }).click();
+    await expect(page.locator("main article")).toHaveCount(12);
+    await page.goBack();
+    await expect(page.locator("main article")).toHaveCount(2);
+    await page.getByRole("link", { name: "Clear filters", exact: true }).click();
+    await expect(page.locator("main article")).toHaveCount(12);
+    await expect(page).toHaveURL(/\/vehicles$/);
+  });
+
+  test("search clear, all sort orders and one keyboard link per card", async ({ page }) => {
+    await page.goto("/vehicles?q=Toyota+Aqu");
+    const search = page.getByRole("searchbox", { name: "Search by make or model" });
+    await expect(page.locator("main article")).toHaveCount(1);
+    await page.getByRole("button", { name: "Clear search", exact: true }).click();
+    await expect(search).toHaveValue("");
+    await expect(search).toBeFocused();
+    await search.press("Enter");
+    await expect(page.locator("main article")).toHaveCount(12);
+    for (const [sort, first] of [["price-desc", "LKR 15,000,000"], ["price-asc", "LKR 1,000,000"], ["year-desc", "Toyota Fixture 7"], ["newest", "Toyota Aqua"]] as const) {
+      await page.getByLabel("Sort by", { exact: true }).selectOption(sort);
+      await page.getByRole("button", { name: "Update order", exact: true }).click();
+      await expect(page.locator("main article").first()).toContainText(first);
+    }
+    const card = page.locator("main article").first();
+    await expect(card.getByRole("link")).toHaveCount(1);
+    await expect(card).toContainText("Seller’s asking price");
+    await expect(card).toContainText("Listing approved for display");
+    await card.getByRole("link").focus();
+    await page.keyboard.press("Enter");
+    await expect(page).toHaveURL(/\/vehicles\/fixture-car-1$/);
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("Toyota Aqua");
+  });
+
+  test("invalid query displays defaults without pretending the database failed", async ({ page }) => {
+    await page.goto("/vehicles?fuel=unsupported&maxMileage=-1&sort=bad&limit=999999&status=draft");
+    await expect(page.locator("main").getByRole("alert")).toContainText("Please check your filters");
+    await expect(page.locator("main article")).toHaveCount(12);
+    await expect(page.locator("main")).not.toContainText("Hidden fixture brand");
+    await expect(page.getByRole("heading", { name: "We couldn’t load vehicles" })).toHaveCount(0);
   });
 });

@@ -1,0 +1,130 @@
+{
+  "observations": [
+    {
+      "width": 360,
+      "overflow": false,
+      "undersized": [],
+      "cardWidths": [
+        320,
+        320,
+        320
+      ],
+      "imageRatio": 1.3333333333333333,
+      "linkCounts": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "width": 390,
+      "overflow": false,
+      "undersized": [],
+      "cardWidths": [
+        350,
+        350,
+        350
+      ],
+      "imageRatio": 1.3333333333333333,
+      "linkCounts": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "width": 768,
+      "overflow": false,
+      "undersized": [],
+      "cardWidths": [
+        342,
+        342,
+        342
+      ],
+      "imageRatio": 1.3333333333333333,
+      "linkCounts": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "width": 1280,
+      "overflow": false,
+      "undersized": [],
+      "cardWidths": [
+        288,
+        288,
+        288
+      ],
+      "imageRatio": 1.3333333333333333,
+      "linkCounts": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "width": 1440,
+      "overflow": false,
+      "undersized": [],
+      "cardWidths": [
+        288,
+        288,
+        288
+      ],
+      "imageRatio": 1.3333333333333333,
+      "linkCounts": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    }
+  ],
+  "errors": []
+}

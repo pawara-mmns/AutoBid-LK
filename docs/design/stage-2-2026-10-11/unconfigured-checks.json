@@ -1,0 +1,45 @@
+{
+  "observations": [
+    {
+      "width": 360,
+      "overflow": false,
+      "undersized": [],
+      "cardWidths": [],
+      "imageRatio": null,
+      "linkCounts": []
+    },
+    {
+      "width": 390,
+      "overflow": false,
+      "undersized": [],
+      "cardWidths": [],
+      "imageRatio": null,
+      "linkCounts": []
+    },
+    {
+      "width": 768,
+      "overflow": false,
+      "undersized": [],
+      "cardWidths": [],
+      "imageRatio": null,
+      "linkCounts": []
+    },
+    {
+      "width": 1280,
+      "overflow": false,
+      "undersized": [],
+      "cardWidths": [],
+      "imageRatio": null,
+      "linkCounts": []
+    },
+    {
+      "width": 1440,
+      "overflow": false,
+      "undersized": [],
+      "cardWidths": [],
+      "imageRatio": null,
+      "linkCounts": []
+    }
+  ],
+  "errors": []
+}

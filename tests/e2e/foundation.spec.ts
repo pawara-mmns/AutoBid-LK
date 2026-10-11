@@ -28,7 +28,7 @@ test("public shell is usable and explicit about bidding availability", async ({ 
   await expect(page.getByText("There are no live bids or auctions here yet.", { exact: false })).toBeVisible();
   await page.getByRole("button", { name: "Find vehicles", exact: true }).click();
   await expect(page).toHaveURL(/\/vehicles/);
-  await expect(page.getByRole("heading", { name: "Find a vehicle", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Find your vehicle", exact: true })).toBeVisible();
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
   expect(overflow).toBe(false);
   expect(errors).toEqual([]);
@@ -75,6 +75,6 @@ test("extension-injected body attributes preserve hydration and navigation", asy
   await page.getByRole("searchbox", { name: "Search by make or model" }).fill("Toyota");
   await page.getByRole("button", { name: "Find vehicles", exact: true }).click();
   await expect(page).toHaveURL(/\/vehicles\?q=Toyota/);
-  await expect(page.getByRole("heading", { name: "Find a vehicle", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Find your vehicle", exact: true })).toBeVisible();
   expect(errors).toEqual([]);
 });

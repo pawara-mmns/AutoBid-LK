@@ -1,0 +1,78 @@
+{
+  "observations": [
+    {
+      "width": 360,
+      "state": "populated",
+      "cards": 12,
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "state": "empty",
+      "cards": 0,
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "state": "error",
+      "cards": 0,
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "state": "loading",
+      "cards": 12,
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "state": "no-results",
+      "cards": 0,
+      "overflow": false
+    },
+    {
+      "width": 360,
+      "state": "filtered",
+      "cards": 1,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "state": "populated",
+      "cards": 12,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "state": "empty",
+      "cards": 0,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "state": "error",
+      "cards": 0,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "state": "loading",
+      "cards": 12,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "state": "no-results",
+      "cards": 0,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "state": "filtered",
+      "cards": 1,
+      "overflow": false
+    }
+  ],
+  "enlargedOverflow": false,
+  "errors": []
+}

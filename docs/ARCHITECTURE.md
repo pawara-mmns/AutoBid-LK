@@ -89,6 +89,12 @@ Stage 1 splits SiteHeader/SiteFooter from the shell and composes HomepageHero, V
 
 Application copy, accessibility labels and metadata live in typed dictionaries. Known locales are en/si/ta; only English is rendered. Do not offer an untranslated locale. The stored preferred locale reserves future preferences without exposing a nonworking selector. English provider emails use language-specific templates under supabase/templates/. Full translations, locale routing and formatting remain later work.
 
+## UI implementation Stage 2 — browsing
+
+BrowsePage composes the shared search, focused server sort/removal links, responsive filters and cards. VehicleSearchInput and VehicleFilterForm are the new interactive islands. Mobile filters opt into ModalDrawer's full-height layout with independent field scrolling and visible actions; navigation retains its default drawer. Applied URL values key controls to avoid stale state. GET submissions reset pagination; changing/removing a brand clears its model. Cards have one detail link, exact asking-price/display-approval copy and controlled 4:3 images with browse-specific sizes.
+
+The existing schema/query adds fuel/transmission equality and inclusive bounded mileage ranges on existing columns. Invalid URLs show correction feedback with safe-default results. Public projections, RLS/visibility, bounded facets, pagination, Auth and schema remain. Homepage/detail composition is preserved, receiving shared search/card/skeleton improvements only. Five-width production browser checks and qa:browse record their verification boundaries in docs/design/stage-2-2026-10-11/implementation.md. No Phase 3 workflow is authorized.
+
 ## Future domain integrity
 
 Private document access, auction lifecycle and bidding are not implemented. Future bids require atomic PostgreSQL transactions/locks, server time, idempotency and committed Realtime broadcasts. Money uses exact integer minor units. Add those services and database policies only in their authorized phases.
