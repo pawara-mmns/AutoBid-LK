@@ -1,0 +1,27 @@
+[
+  {
+    "foreground": "primary",
+    "background": "primary-foreground",
+    "ratio": 6.85
+  },
+  {
+    "foreground": "muted-foreground",
+    "background": "background",
+    "ratio": 5.49
+  },
+  {
+    "foreground": "control-border",
+    "background": "surface",
+    "ratio": 3.18
+  },
+  {
+    "foreground": "control-border",
+    "background": "background",
+    "ratio": 3.01
+  },
+  {
+    "foreground": "danger",
+    "background": "surface",
+    "ratio": 6.57
+  }
+]

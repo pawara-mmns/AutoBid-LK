@@ -1,0 +1,22 @@
+[
+  {
+    "path": "/",
+    "smallTargets": [],
+    "textScale200Overflow": false
+  },
+  {
+    "path": "/vehicles",
+    "smallTargets": [],
+    "textScale200Overflow": false
+  },
+  {
+    "path": "/sign-up",
+    "smallTargets": [],
+    "textScale200Overflow": false
+  },
+  {
+    "path": "/sell",
+    "smallTargets": [],
+    "textScale200Overflow": false
+  }
+]

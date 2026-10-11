@@ -1,0 +1,65 @@
+{
+  "results": [
+    {
+      "width": 360,
+      "overflow": false,
+      "headingSize": "30px",
+      "heroHeight": 772.609375,
+      "guideTop": 1262.390625,
+      "searchBottom": 0,
+      "recentCards": 0,
+      "sinhalaFamily": "sinhala, geist, \"geist Fallback\", \"Nirmala UI\", sans-serif",
+      "tamilFamily": "tamil, geist, \"geist Fallback\", \"Nirmala UI\", sans-serif",
+      "smallTargets": []
+    },
+    {
+      "width": 390,
+      "overflow": false,
+      "headingSize": "30.13px",
+      "heroHeight": 792.75,
+      "guideTop": 1254.53125,
+      "searchBottom": 0,
+      "recentCards": 0,
+      "sinhalaFamily": "sinhala, geist, \"geist Fallback\", \"Nirmala UI\", sans-serif",
+      "tamilFamily": "tamil, geist, \"geist Fallback\", \"Nirmala UI\", sans-serif",
+      "smallTargets": []
+    },
+    {
+      "width": 768,
+      "overflow": false,
+      "headingSize": "37.312px",
+      "heroHeight": 935.421875,
+      "guideTop": 1374.203125,
+      "searchBottom": 0,
+      "recentCards": 0,
+      "sinhalaFamily": "sinhala, geist, \"geist Fallback\", \"Nirmala UI\", sans-serif",
+      "tamilFamily": "tamil, geist, \"geist Fallback\", \"Nirmala UI\", sans-serif",
+      "smallTargets": []
+    },
+    {
+      "width": 1280,
+      "overflow": false,
+      "headingSize": "44px",
+      "heroHeight": 434.796875,
+      "guideTop": 873.578125,
+      "searchBottom": 0,
+      "recentCards": 0,
+      "sinhalaFamily": "sinhala, geist, \"geist Fallback\", \"Nirmala UI\", sans-serif",
+      "tamilFamily": "tamil, geist, \"geist Fallback\", \"Nirmala UI\", sans-serif",
+      "smallTargets": []
+    },
+    {
+      "width": 1440,
+      "overflow": false,
+      "headingSize": "44px",
+      "heroHeight": 434.796875,
+      "guideTop": 873.578125,
+      "searchBottom": 0,
+      "recentCards": 0,
+      "sinhalaFamily": "sinhala, geist, \"geist Fallback\", \"Nirmala UI\", sans-serif",
+      "tamilFamily": "tamil, geist, \"geist Fallback\", \"Nirmala UI\", sans-serif",
+      "smallTargets": []
+    }
+  ],
+  "errors": []
+}

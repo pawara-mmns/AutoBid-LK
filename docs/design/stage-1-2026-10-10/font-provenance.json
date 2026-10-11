@@ -1,0 +1,25 @@
+{
+  "retrieved": "2026-10-10",
+  "cssUrl": "https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@100..900&family=Noto+Sans+Tamil:wght@100..900&display=swap",
+  "licenseRevision": "8b0a1d0f5983c89bc2b93f1b5fb55f9e252744b5",
+  "assets": [
+    {
+      "file": "noto-sans-sinhala-variable.woff2",
+      "source": "https://fonts.gstatic.com/s/notosanssinhala/v36/yMJ7MJBya43H0SUF_WmcBEEf4rQVO2P524V5N_MxQzQtb-t19Pqq4-E.woff2",
+      "bytes": 129932,
+      "sha256": "f892cc5d9a27bb09786f24c6d7c7cad99add94e282eeb548f9fb555f9917ade3",
+      "licenseSource": "https://raw.githubusercontent.com/google/fonts/8b0a1d0f5983c89bc2b93f1b5fb55f9e252744b5/ofl/notosanssinhala/OFL.txt",
+      "unicodeRange": "U+0964-0965, U+0D81-0DF4, U+1CF2, U+200C-200D, U+25CC, U+111E1-111F4",
+      "weight": "100 900"
+    },
+    {
+      "file": "noto-sans-tamil-variable.woff2",
+      "source": "https://fonts.gstatic.com/s/notosanstamil/v31/ieVp2YdFI3GCY6SyQy1KfStzYKZgzN1z4LKDbeZce-048cFpwEFI.woff2",
+      "bytes": 50468,
+      "sha256": "98e5b968b0e64d56a5833e1f8059453784190564ceeeda96613fd87282d3d8a1",
+      "licenseSource": "https://raw.githubusercontent.com/google/fonts/8b0a1d0f5983c89bc2b93f1b5fb55f9e252744b5/ofl/notosanstamil/OFL.txt",
+      "unicodeRange": "U+0964-0965, U+0B82-0BFA, U+200C-200D, U+20B9, U+25CC",
+      "weight": "100 900"
+    }
+  ]
+}

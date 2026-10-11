@@ -1,0 +1,21 @@
+{
+  "fonts": {
+    "si": [
+      {
+        "familyName": "Noto Sans Sinhala",
+        "postScriptName": "Noto-Sans-Sinhala",
+        "isCustomFont": true,
+        "glyphCount": 4
+      }
+    ],
+    "ta": [
+      {
+        "familyName": "Noto Sans Tamil",
+        "postScriptName": "Noto-Sans-Tamil",
+        "isCustomFont": true,
+        "glyphCount": 4
+      }
+    ]
+  },
+  "thirdPartyFonts": []
+}

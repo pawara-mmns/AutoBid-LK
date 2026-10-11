@@ -1,0 +1,245 @@
+{
+  "results": [
+    {
+      "label": "normal-home",
+      "width": 360,
+      "overflow": false,
+      "searchBottom": 393.28125,
+      "searchHeight": 49.59375,
+      "heroHeight": 772.609375,
+      "headingSize": "30px",
+      "guideTop": 1262.390625,
+      "recentCards": 0,
+      "state": [
+        "Recently added vehicles",
+        "No approved vehicles to display yet",
+        "A simple way to get started"
+      ],
+      "smallTargets": []
+    },
+    {
+      "label": "normal-home",
+      "width": 390,
+      "overflow": false,
+      "searchBottom": 393.421875,
+      "searchHeight": 49.59375,
+      "heroHeight": 792.75,
+      "headingSize": "30.13px",
+      "guideTop": 1254.53125,
+      "recentCards": 0,
+      "state": [
+        "Recently added vehicles",
+        "No approved vehicles to display yet",
+        "A simple way to get started"
+      ],
+      "smallTargets": []
+    },
+    {
+      "label": "normal-home",
+      "width": 768,
+      "overflow": false,
+      "searchBottom": 346.09375,
+      "searchHeight": 51.59375,
+      "heroHeight": 935.421875,
+      "headingSize": "37.312px",
+      "guideTop": 1374.203125,
+      "recentCards": 0,
+      "state": [
+        "Recently added vehicles",
+        "No approved vehicles to display yet",
+        "A simple way to get started"
+      ],
+      "smallTargets": []
+    },
+    {
+      "label": "normal-home",
+      "width": 1280,
+      "overflow": false,
+      "searchBottom": 362.78125,
+      "searchHeight": 51.59375,
+      "heroHeight": 434.796875,
+      "headingSize": "44px",
+      "guideTop": 873.578125,
+      "recentCards": 0,
+      "state": [
+        "Recently added vehicles",
+        "No approved vehicles to display yet",
+        "A simple way to get started"
+      ],
+      "smallTargets": []
+    },
+    {
+      "label": "normal-home",
+      "width": 1440,
+      "overflow": false,
+      "searchBottom": 362.78125,
+      "searchHeight": 51.59375,
+      "heroHeight": 434.796875,
+      "headingSize": "44px",
+      "guideTop": 873.578125,
+      "recentCards": 0,
+      "state": [
+        "Recently added vehicles",
+        "No approved vehicles to display yet",
+        "A simple way to get started"
+      ],
+      "smallTargets": []
+    },
+    {
+      "label": "fixture-home",
+      "width": 360,
+      "overflow": false,
+      "searchBottom": 393.28125,
+      "searchHeight": 49.59375,
+      "heroHeight": 772.609375,
+      "headingSize": "30px",
+      "guideTop": 4220.953125,
+      "recentCards": 6,
+      "state": [
+        "Recently added vehicles",
+        "A simple way to get started"
+      ],
+      "smallTargets": []
+    },
+    {
+      "label": "fixture-home",
+      "width": 390,
+      "overflow": false,
+      "searchBottom": 393.421875,
+      "searchHeight": 49.59375,
+      "heroHeight": 792.75,
+      "headingSize": "30.13px",
+      "guideTop": 4376.09375,
+      "recentCards": 6,
+      "state": [
+        "Recently added vehicles",
+        "A simple way to get started"
+      ],
+      "smallTargets": []
+    },
+    {
+      "label": "fixture-home",
+      "width": 768,
+      "overflow": false,
+      "searchBottom": 346.09375,
+      "searchHeight": 51.59375,
+      "heroHeight": 935.421875,
+      "headingSize": "37.312px",
+      "guideTop": 2855.984375,
+      "recentCards": 6,
+      "state": [
+        "Recently added vehicles",
+        "A simple way to get started"
+      ],
+      "smallTargets": []
+    },
+    {
+      "label": "fixture-home",
+      "width": 1280,
+      "overflow": false,
+      "searchBottom": 362.78125,
+      "searchHeight": 51.59375,
+      "heroHeight": 434.796875,
+      "headingSize": "44px",
+      "guideTop": 1871.765625,
+      "recentCards": 6,
+      "state": [
+        "Recently added vehicles",
+        "A simple way to get started"
+      ],
+      "smallTargets": []
+    },
+    {
+      "label": "fixture-home",
+      "width": 1440,
+      "overflow": false,
+      "searchBottom": 362.78125,
+      "searchHeight": 51.59375,
+      "heroHeight": 434.796875,
+      "headingSize": "44px",
+      "guideTop": 1871.765625,
+      "recentCards": 6,
+      "state": [
+        "Recently added vehicles",
+        "A simple way to get started"
+      ],
+      "smallTargets": []
+    },
+    {
+      "label": "empty-home",
+      "width": 360,
+      "overflow": false,
+      "searchBottom": 393.28125,
+      "searchHeight": 49.59375,
+      "heroHeight": 772.609375,
+      "headingSize": "30px",
+      "guideTop": 1262.390625,
+      "recentCards": 0,
+      "state": [
+        "Recently added vehicles",
+        "No approved vehicles to display yet",
+        "A simple way to get started"
+      ],
+      "smallTargets": []
+    },
+    {
+      "label": "empty-home",
+      "width": 1440,
+      "overflow": false,
+      "searchBottom": 362.78125,
+      "searchHeight": 51.59375,
+      "heroHeight": 434.796875,
+      "headingSize": "44px",
+      "guideTop": 873.578125,
+      "recentCards": 0,
+      "state": [
+        "Recently added vehicles",
+        "No approved vehicles to display yet",
+        "A simple way to get started"
+      ],
+      "smallTargets": []
+    },
+    {
+      "label": "error-home",
+      "width": 360,
+      "overflow": false,
+      "searchBottom": 393.28125,
+      "searchHeight": 49.59375,
+      "heroHeight": 772.609375,
+      "headingSize": "30px",
+      "guideTop": 1325.984375,
+      "recentCards": 0,
+      "state": [
+        "Recently added vehicles",
+        "We couldn’t load vehicles",
+        "A simple way to get started"
+      ],
+      "smallTargets": []
+    },
+    {
+      "label": "error-home",
+      "width": 1440,
+      "overflow": false,
+      "searchBottom": 362.78125,
+      "searchHeight": 51.59375,
+      "heroHeight": 434.796875,
+      "headingSize": "44px",
+      "guideTop": 945.171875,
+      "recentCards": 0,
+      "state": [
+        "Recently added vehicles",
+        "We couldn’t load vehicles",
+        "A simple way to get started"
+      ],
+      "smallTargets": []
+    }
+  ],
+  "errors": [],
+  "thirdPartyFonts": [],
+  "loadingScreenshots": [
+    360,
+    1440
+  ],
+  "textScaleOverflow": false,
+  "menuEscapeFocus": true
+}
