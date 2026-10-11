@@ -9,6 +9,7 @@ const env = {
   NEXT_PUBLIC_SUPABASE_URL: "",
   NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: "",
   E2E_AUTH_UNCONFIGURED: "1",
+  E2E_DEV_SERVER: "",
 };
 
 async function run(args, childEnv = env) {

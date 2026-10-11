@@ -13,7 +13,7 @@ export async function AuthPage({ mode, searchParams }: { mode: AuthMode; searchP
   const descriptions = { "sign-in": copy.signInDescription, "sign-up": copy.signUpDescription, recovery: copy.recoveryDescription, password: copy.passwordDescription };
   const messages = ["invalidLink", "passwordChanged", "signedOut", "sessionRequired"] as const;
   const message = messages.find((key) => key === params.message);
-  return <section className="mx-auto max-w-md px-5 py-12 sm:py-16">
+  return <section className="mx-auto my-6 max-w-lg border-y border-border bg-surface px-5 py-8 sm:my-12 sm:rounded-md sm:border sm:px-10 sm:py-10">
     <p className="text-sm font-semibold text-primary">{copy.eyebrow}</p>
     <h1 className="mt-3 text-3xl font-semibold tracking-tight">{titles[mode]}</h1>
     <p className="mt-4 text-muted-foreground">{descriptions[mode]}</p>

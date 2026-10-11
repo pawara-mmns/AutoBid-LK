@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 
 test("public homepage remains available without login", async ({ page, isMobile }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Your next car.");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Find your next car.");
   if (isMobile) await page.getByRole("button", { name: "Menu", exact: true }).click();
   await page.getByRole("link", { name: "My account" }).click();
   await expect(page).toHaveURL(/\/sign-in\?/);

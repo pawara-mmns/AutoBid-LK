@@ -1,24 +1,29 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fafbf8;
-  --foreground: #142c2b;
-  --primary: #194d43;
+  --background: #f8f9f7;
+  --surface: #ffffff;
+  --foreground: #162027;
+  --primary: #126657;
   --primary-foreground: #ffffff;
-  --primary-hover: #123c34;
-  --primary-active: #0d3029;
-  --secondary: #e3ebe6;
-  --muted: #eef2ed;
-  --muted-foreground: #526360;
-  --accent: #d8ef9d;
-  --accent-foreground: #142c2b;
-  --border: #d5dfd8;
-  --ring: #276758;
-  --radius: 0.75rem;
+  --primary-hover: #0f5549;
+  --primary-active: #0b443b;
+  --secondary: #e8efeb;
+  --muted: #f0f3f0;
+  --muted-foreground: #5b6770;
+  --accent: #d99a43;
+  --accent-foreground: #162027;
+  --border: #e0e5e2;
+  --control-border: #85948c;
+  --ring: #126657;
+  --danger: #b42318;
+  --radius: 0.5rem;
+  --layout-max-width: 80rem;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
@@ -30,8 +35,11 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-border: var(--border);
+  --color-control-border: var(--control-border);
   --color-ring: var(--ring);
-  --font-sans: Arial, "Nirmala UI", "Iskoola Pota", "Latha", sans-serif;
+  --color-danger: var(--danger);
+  --font-sans: var(--font-geist), var(--font-sinhala), var(--font-tamil), "Nirmala UI", "Iskoola Pota", "Latha", Arial, sans-serif;
+  --container-site: var(--layout-max-width);
   --radius-sm: calc(var(--radius) * 0.5);
   --radius-md: var(--radius);
   --radius-lg: calc(var(--radius) * 1.5);
@@ -39,6 +47,16 @@
   --spacing: 0.25rem;
   --text-base: 1rem;
   --text-base--line-height: 1.6;
+  --text-display: clamp(1.875rem, 1.42rem + 1.9vw, 2.75rem);
+  --text-display--line-height: 1.15;
+  --text-display--letter-spacing: -0.035em;
+  --text-section: 1.5rem;
+  --text-section--line-height: 1.3;
+  --text-section--letter-spacing: -0.025em;
+  --text-ui: 0.875rem;
+  --text-ui--line-height: 1.5;
+  --text-price: 1.5rem;
+  --text-price--line-height: 1.25;
 }
 
 @layer base {
@@ -49,6 +67,12 @@
   button:not(:disabled) { cursor: pointer; }
   section[id] { scroll-margin-top: 2rem; }
   ::selection { background: var(--accent); color: var(--foreground); }
+  :lang(si) { font-family: var(--font-sinhala), var(--font-geist), "Nirmala UI", sans-serif; }
+  :lang(ta) { font-family: var(--font-tamil), var(--font-geist), "Nirmala UI", sans-serif; }
+}
+
+@layer components {
+  .site-container { @apply mx-auto w-full max-w-site px-5 sm:px-8 lg:px-10; }
 }
 
 @media (prefers-reduced-motion: reduce) {

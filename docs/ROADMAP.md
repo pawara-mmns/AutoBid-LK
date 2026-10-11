@@ -16,7 +16,9 @@ Phases require explicit authorization. Completion of a phase never authorizes th
 
 ## Status
 
-Phase 0: complete. Phase 1: implementation and isolated checks complete; actual provider acceptance remains pending. Phase 2 was explicitly authorized and its source implementation/isolated verification are complete. Public configuration exists, but known tables are absent from the exposed project schema; no migration/deployment was performed. See PHASE_LOG.md for the provider gate. Phases 3–8 are not started or authorized. Resolve documented acceptance requirements before launch; Phase 3 requires a new instruction.
+UI Redesign Implementation Stage 1 (design system + public homepage): complete within Phase 2. This pass preserves the existing broader visual work and makes no further browse/detail implementation changes. Recommended UI Stage 2 is vehicle browsing, after explicit authorization; seller/bidding workflows and Phase 3 remain outside scope. See docs/design/stage-1-2026-10-10/implementation.md and the phase log for current checks.
+
+Phase 0: complete. Phase 1: implementation and isolated checks complete; actual provider acceptance remains pending. Phase 2 was explicitly authorized and its source implementation/isolated verification are complete. Public configuration exists; the latest normal UI shows zero approved listings, superseding the earlier missing-table observation as a public rendering snapshot. Provider acceptance still needs completion; no migration/deployment was performed during this work. See PHASE_LOG.md for the provider gate. Phases 3–8 are not started or authorized. Resolve documented acceptance requirements before launch; Phase 3 requires a new instruction.
 
 | Phase 2 milestone | Implemented and verified scope |
 | --- | --- |
@@ -25,3 +27,7 @@ Phase 0: complete. Phase 1: implementation and isolated checks complete; actual 
 | 2.3 Details | Approved visibility/404 gate, gallery, summary/specifications, declared condition/history, honest auction boundary and bounded related cards. |
 | 2.4 Database integration | Public-safe listings/media migration, RLS/column grants, private bucket, public client and generated types; real provider application/acceptance pending. |
 | 2.5 Tests and optimization | Unit/PostgreSQL RLS checks, isolated production browser suites, 360px/tablet/desktop review, optimized controlled images and normal-build restoration. |
+
+### Phase 2 presentation follow-up — 2026-10-10
+
+The user selected Premium Automotive Minimalism after a screenshot-backed audit and three visual concepts. The follow-up refines the existing shell, homepage, public catalog/details, account-form presentation and seller information page. It preserves public query/Auth/schema contracts and keeps seller submission/bidding unavailable. No Phase 3 feature is authorized by this redesign. Design rationale and evidence are in [implementation.md](design/redesign-2026-10-10/implementation.md), the root design-qa.md and PHASE_LOG.md.
