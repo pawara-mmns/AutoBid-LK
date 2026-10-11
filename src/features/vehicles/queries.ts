@@ -28,6 +28,10 @@ export async function queryVehicles(filters: VehicleSearch = defaultSearch, crea
     if (filters.maxPrice !== undefined) query = query.lte("price_minor", filters.maxPrice);
     if (filters.minYear !== undefined) query = query.gte("manufacture_year", filters.minYear);
     if (filters.maxYear !== undefined) query = query.lte("manufacture_year", filters.maxYear);
+    if (filters.fuel) query = query.eq("fuel_type", filters.fuel);
+    if (filters.transmission) query = query.eq("transmission", filters.transmission);
+    if (filters.minMileage !== undefined) query = query.gte("mileage_km", filters.minMileage);
+    if (filters.maxMileage !== undefined) query = query.lte("mileage_km", filters.maxMileage);
     const order = { newest: ["published_at", false], "price-asc": ["price_minor", true], "price-desc": ["price_minor", false], "year-desc": ["manufacture_year", false] } as const;
     const [column, ascending] = order[filters.sort];
     const offset = (filters.page - 1) * boundedLimit;

@@ -5,5 +5,6 @@ import { VehicleSkeletons } from "@/features/vehicles/vehicle-grid";
 
 export const dynamic = "force-dynamic";
 export default async function VehiclesPage({ searchParams }: { searchParams: Promise<SearchParams> }) {
-  return <Suspense fallback={<div className="mx-auto max-w-6xl px-5 py-12 sm:px-8"><VehicleSkeletons /></div>}><BrowsePage searchParams={await searchParams} /></Suspense>;
+  const params = await searchParams;
+  return <Suspense key={JSON.stringify(params)} fallback={<div className="site-container py-8 sm:py-10"><VehicleSkeletons /></div>}><BrowsePage searchParams={params} /></Suspense>;
 }
