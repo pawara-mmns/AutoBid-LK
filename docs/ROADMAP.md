@@ -16,7 +16,7 @@ Phases require explicit authorization. Completion of a phase never authorizes th
 
 ## Status
 
-UI Redesign Implementation Stage 1 (design system + public homepage): complete within Phase 2. This pass preserves the existing broader visual work and makes no further browse/detail implementation changes. Recommended UI Stage 2 is vehicle browsing, after explicit authorization; seller/bidding workflows and Phase 3 remain outside scope. See docs/design/stage-1-2026-10-10/implementation.md and the phase log for current checks.
+UI Redesign Stage 1 (design system + homepage) and Stage 2 (browsing/search/filters/cards) are complete within Phase 2. Stage 2 preserves the established identity and public visibility, adds existing-column advanced filters and records five-width/state QA in docs/design/stage-2-2026-10-11/implementation.md. Recommended next UI stage is vehicle details, only after new authorization. Seller/bidding workflows and development Phase 3 remain outside scope.
 
 Phase 0: complete. Phase 1: implementation and isolated checks complete; actual provider acceptance remains pending. Phase 2 was explicitly authorized and its source implementation/isolated verification are complete. Public configuration exists; the latest normal UI shows zero approved listings, superseding the earlier missing-table observation as a public rendering snapshot. Provider acceptance still needs completion; no migration/deployment was performed during this work. See PHASE_LOG.md for the provider gate. Phases 3–8 are not started or authorized. Resolve documented acceptance requirements before launch; Phase 3 requires a new instruction.
 

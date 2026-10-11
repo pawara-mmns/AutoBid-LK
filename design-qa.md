@@ -1,4 +1,14 @@
-# Design QA ? AutoBid LK, UI Implementation Stage 1
+# Design QA — AutoBid LK, UI Stage 2
+
+2026-10-11, Asia/Colombo. Result: passed for the authorized browsing/search/filter/card scope. [Implementation, changed files and detailed evidence](docs/design/stage-2-2026-10-11/implementation.md).
+
+Inspected actual isolated production screenshots at 360, 390, 768, 1280 and 1440px against the established Stage 1 identity. Search/filter placement, one-column phone cards, two-column tablet grid, three-column desktop grid, 4:3 images, prominent asking prices and keyboard/modal behavior passed. No measured horizontal overflow, undersized inspected controls or runtime/hydration errors. Populated fixtures use a uniform test raster, not real vehicle photography.
+
+Corrected mobile filter actions covering fields, desktop Apply wrapping and redundant clipped price placeholders. Final captures use an independently scrolling filter body with visible actions. Reviewed chips/reset, missing-photo, empty/no-match, delayed skeleton and outage states. Automated 200% root-text reflow at 360px passed. E2E: unconfigured 21 passed/17 intentional skips; fixtures 35 passed/3 intentional skips. Lint/types/136 unit-PostgreSQL tests, database type drift and production builds passed; normal build restored.
+
+Provider Auth/PostgREST/Storage/SMTP, reviewed translations, real-device/slow-network and full screen-reader/WCAG acceptance remain pending. No live project write, commit or deployment. Next UI stage: details, only after new authorization.
+
+## Historical Stage 1 record
 
 Date: 2026-10-10 (Asia/Colombo). Scope: design system and public homepage only. Previous broader work/report preserved in docs/design/stage-1-2026-10-10/prior-design-qa.md.
 
