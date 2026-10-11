@@ -12,9 +12,9 @@ export function VehicleSearch({ filters, hero = false }: { filters: VehicleSearc
   const copy = getDictionary().marketplace;
   const id = hero ? "hero-search" : "vehicle-search";
   return <form action="/vehicles" method="get" role="search" className="w-full">
-    <label htmlFor={id} className="mb-2 block text-sm font-semibold">{copy.searchLabel}</label>
+    <label htmlFor={id} className="mb-2 block text-sm font-medium">{copy.searchLabel}</label>
     <div className="flex flex-col gap-3 sm:flex-row">
-      <Input id={id} name="q" type="search" defaultValue={filters.q ?? ""} maxLength={80} placeholder={copy.searchPlaceholder} className="min-w-0 flex-1 bg-background" />
+      <Input id={id} name="q" type="search" defaultValue={filters.q ?? ""} maxLength={80} placeholder={copy.searchPlaceholder} className="min-w-0 flex-1" />
       <SearchFields filters={filters} omit={["q", "page"]} />
       <Button type="submit" className="shrink-0"><Search aria-hidden="true" />{hero ? copy.find : getDictionary().vehicles.search}</Button>
     </div>

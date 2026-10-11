@@ -14,26 +14,29 @@ export async function BrowsePage({ searchParams }: { searchParams: SearchParams 
   const copy = getDictionary().vehicles;
   const active = searchEntries(filters).filter(([key]) => !["sort", "page"].includes(key));
   const pages = result?.status === "ok" ? Math.max(1, Math.min(maxPage, Math.ceil(result.count / pageSize))) : 1;
-  return <div className="mx-auto max-w-6xl px-5 py-10 sm:px-8 sm:py-12">
-    <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">{copy.title}</h1><p className="mt-3 text-muted-foreground">{copy.description}</p>
-    <div className="mt-7 max-w-3xl"><VehicleSearch filters={filters} /></div>
+  return <div className="mx-auto max-w-7xl px-5 py-8 sm:px-8 sm:py-10 lg:px-10">
+    <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">{copy.title}</h1><p className="mt-2 text-muted-foreground">{copy.description}</p>
+    <div className="mt-5 max-w-3xl"><VehicleSearch filters={filters} /></div>
     {!valid && <p role="alert" className="mt-6 rounded-md border border-border bg-muted p-4">{copy.invalidFilters} <Link href="/vehicles" className="font-semibold text-primary underline">{copy.clear}</Link></p>}
     {active.length > 0 && <div className="mt-5 flex flex-wrap items-center gap-2" aria-label={copy.activeFilters}>
       <span className="text-sm text-muted-foreground">{active.length === 1 ? copy.filterCountOne : copy.filterCount.replace("{count}", String(active.length))}</span>
       {active.map(([key, value]) => <span key={key} className="max-w-full break-words rounded-full border border-border bg-muted px-3 py-1.5 text-sm">{key === "q" ? getDictionary().marketplace.searchLabel : copy[key as "make" | "model" | "district" | "minPrice" | "maxPrice" | "minYear" | "maxYear"]}: {value}</span>)}
       <Link href="/vehicles" className="inline-flex min-h-11 items-center px-2 text-sm text-primary underline">{copy.clear}</Link>
     </div>}
-    <div className="mt-7 grid gap-7 lg:grid-cols-[260px_minmax(0,1fr)]">
-      <VehicleFilters filters={filters} facets={facets} />
+    <div className="mt-6 grid gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-8">
+      <VehicleFilters filters={filters} facets={facets} display="desktop" />
       <div className="min-w-0">
-        <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+        <div className="mb-5 flex flex-wrap items-end justify-between gap-3 border-b border-border pb-4">
           <p className="text-sm font-semibold" role="status">{result?.status === "ok" ? result.count === 1 ? copy.countOne : copy.count.replace("{count}", new Intl.NumberFormat("en-LK").format(result.count)) : ""}</p>
+          <div className="flex w-full flex-wrap items-end gap-3 lg:w-auto">
+          <VehicleFilters filters={filters} facets={facets} display="mobile" />
           <form action="/vehicles" method="get" className="flex flex-wrap items-end gap-2">
             <SearchFields filters={filters} omit={["sort", "page"]} />
             <div><label htmlFor="vehicle-sort" className="mb-1 block text-sm">{copy.sort}</label>
-              <select id="vehicle-sort" name="sort" defaultValue={filters.sort} className="min-h-11 max-w-full rounded-md border border-border bg-background px-3 text-sm">{sortValues.map((sort) => <option key={sort} value={sort}>{copy.sorts[sort]}</option>)}</select>
+              <select id="vehicle-sort" name="sort" defaultValue={filters.sort} className="min-h-12 max-w-full rounded-md border border-control-border bg-surface px-3 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring">{sortValues.map((sort) => <option key={sort} value={sort}>{copy.sorts[sort]}</option>)}</select>
             </div><Button type="submit" variant="outline">{copy.sortApply}</Button>
           </form>
+          </div>
         </div>
         {!result || result.status !== "ok" ? <ListingState kind="error" /> : result.vehicles.length ? <VehicleGrid vehicles={result.vehicles} /> : <ListingState kind="empty" filtered={active.length > 0 || filters.page > 1} />}
         {result?.status === "ok" && result.count > 0 && <nav aria-label={copy.pagination} className="mt-8 flex flex-wrap items-center justify-between gap-3">

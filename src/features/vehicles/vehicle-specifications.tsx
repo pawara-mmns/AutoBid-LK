@@ -11,6 +11,6 @@ export function VehicleSpecifications({ vehicle }: { vehicle: VehicleDetails }) 
     [copy.engine, vehicle.engine_capacity_cc === null ? null : copy.engineUnit.replace("{count}", String(vehicle.engine_capacity_cc))], [copy.body, vehicle.body_type],
   ];
   return <section><h2 className="text-2xl font-semibold tracking-tight">{copy.specifications}</h2><dl className="mt-5 grid gap-x-8 sm:grid-cols-2">{values.map(([label, value]) => <div key={String(label)} className="flex justify-between gap-4 border-b border-border py-3 text-sm">
-    <dt className="text-muted-foreground">{label}</dt><dd className="text-right font-semibold">{value ?? copy.notStated}</dd>
+    <dt className="text-muted-foreground">{label}</dt><dd className="min-w-0 break-words text-end font-medium">{value ?? copy.notStated}</dd>
   </div>)}</dl></section>;
 }
