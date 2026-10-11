@@ -5,4 +5,5 @@ create table storage.objects (id uuid primary key default gen_random_uuid(), buc
 alter table storage.objects enable row level security;
 grant usage on schema storage to anon, authenticated, service_role;
 grant select on storage.objects to anon, authenticated;
+grant insert, delete on storage.objects to authenticated;
 grant all on storage.buckets, storage.objects to service_role;
