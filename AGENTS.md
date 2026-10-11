@@ -4,7 +4,7 @@
 - Read this file, README.md, docs/PHASE_LOG.md, docs/ROADMAP.md and relevant architecture/decisions before editing.
 - Inspect Git status and existing code. Preserve unrelated work.
 - Identify the explicitly authorized phase, give a concise plan, implement only that phase, verify, update relevant documentation and stop.
-- Phase 2 is the current authorized scope. Do not begin Phase 3 without a new instruction.
+- Stage 5 seller management (development Phase 3) is explicitly authorized. Stop after Stage 5; development Phase 4 requires a new instruction.
 - Do not commit, push, deploy, change a live database or run destructive commands without authorization.
 - Report checks actually executed, their results and blockers. Never present placeholders as working features.
 
