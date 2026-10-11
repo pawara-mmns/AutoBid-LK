@@ -1,4 +1,14 @@
-# Design QA — AutoBid LK, UI Stage 2
+# Design QA — AutoBid LK, UI Stage 3
+
+2026-10-11, Asia/Colombo. Result: passed for the authorized vehicle details redesign within development Phase 2. [Implementation, file inventory, decisions and evidence](docs/design/stage-3-2026-10-11/implementation.md).
+
+Actually inspected baseline phone/desktop and final rendered details at 360, 390, 768, 1280 and 1440px, full-screen gallery, focused condition/specifications and controlled missing/single/loading/failure states. Photo-first layout, clear asking price, truthful unavailable bidding, early defect disclosures and simple specification/description order preserve the Stage 1 identity. Stage 2 cards display real related-query rows. No measured page/viewer overflow, inspected controls below 44px or runtime/hydration errors; 200% root-text reflow passed. Synthetic photos are a uniform test raster and do not establish real photographic quality.
+
+Corrected explicit modal focus cycling after Shift+Tab testing and capture timing after a desktop screenshot showed related content still loading. Settled screenshots wait for related results; deliberate related/image loading have separate evidence. Final lint/types/150 unit-PostgreSQL tests, migration-derived type drift, production browser suites (23 unconfigured passes/27 intentional skips; 44 fixture passes/6 intentional skips) and production builds passed. Normal build restored; temporary resources closed.
+
+Provider Auth/PostgREST/Storage/SMTP, real-device/network, full screen-reader/WCAG and reviewed translations remain pending. No new domain workflow, schema or private-data exposure. No live mutation, commit or deployment. Stop after Stage 3; proposed authentication/account UI review requires a new instruction.
+
+## Historical Stage 2 record
 
 2026-10-11, Asia/Colombo. Result: passed for the authorized browsing/search/filter/card scope. [Implementation, changed files and detailed evidence](docs/design/stage-2-2026-10-11/implementation.md).
 

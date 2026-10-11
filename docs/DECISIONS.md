@@ -42,6 +42,14 @@ References: [Supabase pagination](https://supabase.com/docs/reference/javascript
 
 Use suppressHydrationWarning only on the root body for the observed extension-generated `__processed_…` attribute. The body has no application-controlled dynamic attributes, so this small compatibility boundary preserves SSR and child diagnostics while avoiding the reported warning. It is an escape hatch, not removal of injected markup or a blanket fix for extensions that modify nested elements. A document-start injection test verifies the exact marker and working interactions in development and production. Developer tests may explicitly reuse localhost:3000; production tests retain their isolated port-3100 server. [React documents the one-level suppression boundary](https://react.dev/reference/react-dom/client/hydrateRoot#suppressing-unavoidable-hydration-mismatch-errors).
 
+## 2026-10-11 — UI redesign Stage 3
+
+1. **Reuse the public read contract.** Keep existing projections, visibility gate, RLS/media delivery and exact money formatter. Present only asking price and truthful bidding unavailability; seller category/verification and auction status cannot be invented from missing data. No schema, dependency or transaction feature is needed.
+2. **A focused gallery interaction island.** Use responsive contain-fit photos, small lazy thumbnails, deliberate horizontal touch gestures and a viewport-filling native dialog. Mount only the selected viewer image. Explicit Tab/Shift+Tab cycling supplements modal isolation; Escape, focus return and scroll restoration are browser-tested. No decorative carousel animation or browser-fullscreen permission is required.
+3. **Disclose condition before detail.** Known defects and seller-declared accident/flood history precede essential specifications on phones. Longer description follows specifications; display approval and independent inspection guidance remain separate. Null fields are unconfirmed, never inferred.
+4. **Safe return navigation and incremental related reads.** Carry canonical catalog context through an optional `from`, validate with the bounded catalog schema and accept only `/vehicles`. Reuse the existing five-row related query, exclude the current listing and show at most four shared cards behind local Suspense. Empty/error sections are omitted.
+5. **Evidence before handoff.** Isolated actual PostgreSQL/RLS fixtures and headless Chrome cover five widths, transport failures, image states, keyboard/touch and selected-image request budgets. Wait for related content for settled screenshots; capture deliberate loading separately. Provider/Auth/Storage/SMTP and full screen-reader/translation acceptance remain pending. See docs/design/stage-3-2026-10-11/implementation.md.
+
 ## Official setup references consulted
 
 - [Next.js installation](https://nextjs.org/docs/app/getting-started/installation)
