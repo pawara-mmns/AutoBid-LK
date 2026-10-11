@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
   // Project rules are maintained in AGENTS.md, without generated appendices.
   agentRules: false,
   images: {
-    localPatterns: [{ pathname: "/vehicle-images/**", search: "" }],
+    localPatterns: [{ pathname: "/vehicle-images/**", search: "" }, { pathname: "/images/automotive-hero.webp", search: "" }],
     remotePatterns: [],
     minimumCacheTTL: 60,
   },
