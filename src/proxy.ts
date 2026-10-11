@@ -7,5 +7,5 @@ export async function proxy(request: NextRequest) {
 
 // Keep the static public homepage independent of sessions and auth availability.
 export const config = {
-  matcher: ["/account/:path*", "/admin/:path*", "/sign-in", "/sign-up", "/forgot-password", "/auth/:path*"],
+  matcher: ["/account/:path*", "/seller/:path*", "/admin/:path*", "/sign-in", "/sign-up", "/forgot-password", "/auth/:path*"],
 };
