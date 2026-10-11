@@ -16,7 +16,7 @@ export function HomepageHero() {
         <p className="mt-4 max-w-lg text-lg text-muted-foreground">{copy.description}</p>
         <div className="mt-7"><VehicleSearch filters={defaultSearch} hero /></div>
         <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2">
-          <Button asChild variant="outline" className="w-full sm:w-auto"><Link href="/sell">{copy.sell}<span className="text-muted-foreground">· {common.comingSoon}</span></Link></Button>
+          <Button asChild variant="outline" className="w-full sm:w-auto"><Link href="/sell">{copy.sell}</Link></Button>
           <Link href="/vehicles" className="inline-flex min-h-12 items-center gap-2 rounded-sm text-ui font-medium text-primary underline underline-offset-4">{copy.viewAll}<ArrowRight aria-hidden="true" className="size-4" /></Link>
         </div>
         <p className="mt-2 text-ui text-muted-foreground">{copy.browseFreely}</p>
