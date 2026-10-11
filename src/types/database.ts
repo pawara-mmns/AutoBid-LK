@@ -85,6 +85,114 @@ export type Database = {
           { foreignKeyName: "profiles_id_fkey"; columns: ["id"]; isOneToOne: true; referencedRelation: "users"; referencedColumns: ["id"] },
         ];
       };
+      seller_listing_photos: {
+        Row: {
+          id: string;
+          listing_id: string;
+          storage_path: string;
+          slot: string;
+          position: number;
+          is_cover: boolean;
+          uploaded_at: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id: string;
+          listing_id: string;
+          storage_path: string;
+          slot: string;
+          position: number;
+          is_cover?: boolean;
+          uploaded_at?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          listing_id?: string;
+          storage_path?: string;
+          slot?: string;
+          position?: number;
+          is_cover?: boolean;
+          uploaded_at?: string | null;
+          created_at?: string;
+        };
+        Relationships: [
+          { foreignKeyName: "seller_listing_photos_listing_id_fkey"; columns: ["listing_id"]; isOneToOne: false; referencedRelation: "seller_listings"; referencedColumns: ["id"] },
+        ];
+      };
+      seller_listings: {
+        Row: {
+          id: string;
+          owner_id: string;
+          status: string;
+          details: Json;
+          expected_price_minor: number | null;
+          minimum_price_minor: number | null;
+          buy_now_price_minor: number | null;
+          revision: number;
+          last_step: number;
+          submitted_at: string | null;
+          created_at: string;
+          updated_at: string;
+          phone_verified: boolean;
+          submission_terms_version: string | null;
+        };
+        Insert: {
+          id: string;
+          owner_id: string;
+          status?: string;
+          details?: Json;
+          expected_price_minor?: number | null;
+          minimum_price_minor?: number | null;
+          buy_now_price_minor?: number | null;
+          revision?: number;
+          last_step?: number;
+          submitted_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+          phone_verified?: boolean;
+          submission_terms_version?: string | null;
+        };
+        Update: {
+          id?: string;
+          owner_id?: string;
+          status?: string;
+          details?: Json;
+          expected_price_minor?: number | null;
+          minimum_price_minor?: number | null;
+          buy_now_price_minor?: number | null;
+          revision?: number;
+          last_step?: number;
+          submitted_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+          phone_verified?: boolean;
+          submission_terms_version?: string | null;
+        };
+        Relationships: [
+          { foreignKeyName: "seller_listings_owner_id_fkey"; columns: ["owner_id"]; isOneToOne: false; referencedRelation: "profiles"; referencedColumns: ["id"] },
+        ];
+      };
+      seller_upload_limits: {
+        Row: {
+          owner_id: string;
+          window_started_at: string;
+          attempts: number;
+        };
+        Insert: {
+          owner_id: string;
+          window_started_at?: string;
+          attempts?: number;
+        };
+        Update: {
+          owner_id?: string;
+          window_started_at?: string;
+          attempts?: number;
+        };
+        Relationships: [
+          { foreignKeyName: "seller_upload_limits_owner_id_fkey"; columns: ["owner_id"]; isOneToOne: true; referencedRelation: "profiles"; referencedColumns: ["id"] },
+        ];
+      };
       vehicle_listings: {
         Row: {
           id: string;
@@ -209,6 +317,10 @@ export type Database = {
     Views: { [_ in never]: never };
     Functions: {
       marketplace_facets: { Args: Record<string, never>; Returns: Json };
+      seller_create_draft: { Args: { p_input: Json }; Returns: Json };
+      seller_manage_photo: { Args: { p_input: Json }; Returns: Json };
+      seller_save_draft: { Args: { p_input: Json }; Returns: Json };
+      seller_submit_listing: { Args: { p_input: Json }; Returns: Json };
     };
     Enums: { [_ in never]: never };
     CompositeTypes: { [_ in never]: never };

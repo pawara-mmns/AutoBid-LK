@@ -17,7 +17,7 @@ test("navigation and all footer/selling links resolve", async ({ page, isMobile 
     expect(response?.status()).toBe(200);
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
   }
-  await expect(page.getByRole("heading", { name: "Selling is coming soon" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Sell your vehicle", exact: true })).toBeVisible();
 });
 
 test("invalid filters and missing configuration fail safely", async ({ page }) => {

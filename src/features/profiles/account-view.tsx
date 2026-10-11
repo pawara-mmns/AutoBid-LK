@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { SignOutButton } from "@/features/auth/sign-out-button";
 import { ProfileForm, DealerRequestForm } from "@/features/profiles/profile-form";
 import type { loadOwnProfile } from "@/features/profiles/service";
-import { getDictionary } from "@/i18n/get-dictionary";
+import { getDictionary, getSellerDictionary } from "@/i18n/get-dictionary";
 
 export function AccountView({ email, account, admin, accessDenied }: {
   email: string; account: Awaited<ReturnType<typeof loadOwnProfile>>; admin: boolean; accessDenied: boolean;
@@ -14,7 +14,7 @@ export function AccountView({ email, account, admin, accessDenied }: {
   return <div className="site-container max-w-5xl py-8 sm:py-12">
     <header className="flex flex-wrap items-start justify-between gap-5">
       <div><h1 className="text-3xl font-semibold tracking-tight">{copy.title}</h1><p className="mt-3 max-w-xl text-muted-foreground">{copy.description}</p></div>
-      <Button asChild variant="outline"><Link href="/vehicles">{common.browse}</Link></Button>
+      <div className="flex flex-wrap gap-3"><Button asChild><Link href="/seller/vehicles">{getSellerDictionary().dashboard}</Link></Button><Button asChild variant="outline"><Link href="/vehicles">{common.browse}</Link></Button></div>
     </header>
     {accessDenied && <p role="alert" className="mt-6 border-s-2 border-danger bg-muted px-4 py-3">{auth.messages.accessDenied}</p>}
     <div className="mt-8 grid gap-10 border-t border-border pt-8 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:gap-12">

@@ -1,7 +1,7 @@
 export const en = {
   metadata: {
     title: "AutoBid LK | Find your next car",
-    description: "Find used cars in Sri Lanka. Compare vehicle details and seller-declared condition. Bidding and selling are coming in later releases.",
+    description: "Find used cars in Sri Lanka. Compare vehicle details and seller-declared condition, or submit your vehicle for review. Bidding is coming in a later release.",
   },
   common: {
     brand: "AutoBid LK",
@@ -121,7 +121,7 @@ export const en = {
     name: "Your name (optional)",
     save: "Save details",
     languageNote: "English is available now. Sinhala and Tamil are planned.",
-    marketplaceNotice: "You can browse vehicles without signing in. Selling and bidding will arrive in later releases.",
+    marketplaceNotice: "Browse vehicles without signing in, or add a private seller listing for review. Bidding is coming in a later release.",
     profileUnavailable: "We couldn’t load your account details. Please try again shortly.",
     dealerTitle: "For vehicle dealers",
     dealerDescription: "If you run a vehicle business, you can add its name for future review. Verification will be managed in a later release.",
@@ -152,7 +152,7 @@ export const en = {
     searchLabel: "Search by make or model",
     searchPlaceholder: "Try Toyota or Aqua",
     sell: "Sell my vehicle",
-    sellNote: "Selling and bidding are coming soon.",
+    sellNote: "Seller submissions are available. Bidding is coming later.",
     categoriesTitle: "Start with a vehicle type",
     cars: "Cars",
     motorcycles: "Motorcycles",
@@ -277,10 +277,10 @@ export const en = {
     back: "Browse vehicles",
     about: { title: "About AutoBid LK", paragraphs: ["AutoBid LK is building a simpler way to find used cars in Sri Lanka.", "Public browsing comes first. Seller submissions, verification reviews and bidding will be added in later releases.", "A listing approved for public display is not a vehicle inspection or a guarantee of its condition."] },
     contact: { title: "Contact", paragraphs: ["Public support contact details are being prepared and will be published before transaction features open.", "For now, our Help page explains what is available in this release."] },
-    help: { title: "A little help finding your car", paragraphs: ["Search by make or model on the homepage. On Browse vehicles, open Filters to choose a brand, district, price or year range.", "Open View details to review photos, specifications and seller-declared condition. Clear filters if no vehicles match.", "You do not need an account to browse. Selling, document verification and bidding are coming later."] },
+    help: { title: "A little help finding your car", paragraphs: ["Search by make or model on the homepage. On Browse vehicles, open Filters to choose a brand, district, price or year range.", "Open View details to review photos, specifications and seller-declared condition. Clear filters if no vehicles match.", "You do not need an account to browse. Sign in to add your vehicle in five steps, save a private draft and submit it for review. Document verification and bidding are coming later."] },
     terms: { title: "Terms — being prepared", paragraphs: ["Marketplace participation terms will be published and reviewed before bidding and transaction features open.", "This release provides vehicle information for browsing. It does not accept bids, process payments or complete vehicle sales."] },
     privacy: { title: "Privacy information", paragraphs: ["You can browse without creating an account. Search filters appear in the page URL, so include only vehicle search terms.", "Account authentication uses Supabase and session cookies. Account names and dealer details are private to their account under the current access rules.", "Private identity and ownership documents are not part of public listings. A full reviewed privacy policy will be published before production launch."] },
-    sell: { title: "Selling is coming soon", paragraphs: ["We’re preparing a guided way to list your vehicle. Listing submissions and seller dashboards are not available yet.", "Identity and ownership review will follow submission before publication. These are the steps we’re preparing:"] },
+    sell: { title: "Sell your vehicle", paragraphs: ["Add your used passenger car in five simple steps. Sign in to save a private draft and return whenever you need.", "Your details and photos stay private while awaiting review. Contact, identity and ownership checks are required before publication. Submitting does not start an auction. Bidding is coming in a later release."] },
   },
   notFound: {
     title: "This page isn’t here",
@@ -295,7 +295,7 @@ export const en = {
 } as const;
 
 // Widen text values so future dictionaries must match keys, not English wording.
-type DictionaryShape<T> = T extends string ? string
+export type DictionaryShape<T> = T extends string ? string
   : T extends readonly (infer Item)[] ? readonly DictionaryShape<Item>[]
   : T extends object ? { [Key in keyof T]: DictionaryShape<T[Key]> }
   : T;
