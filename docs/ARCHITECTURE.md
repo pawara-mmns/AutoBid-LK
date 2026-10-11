@@ -17,6 +17,7 @@ src/
     profiles/          owned profile/dealer requests, schemas and actions
     marketplace/       homepage and pre-release information views
     vehicles/          public queries/DTOs/search/money and focused vehicle UI
+    seller-listings/   owned private drafts, five steps, photos, prices and submission
   i18n/                typed English copy, locale and market conventions
   lib/
     env.ts             public site configuration
@@ -37,11 +38,23 @@ tests/
 docs/                  requirements, architecture, roadmap and phase evidence
 ```
 
-`@/*` resolves to `src/*`. Future modules include seller-listings, verification, auctions, bidding, notifications/watchlists, transactions and moderation. Add them only in their authorized phases.
+`@/*` resolves to `src/*`. Future modules include verification, auctions, bidding, notifications/watchlists, transactions and moderation. Add them only in their authorized phases.
+
+## Stage 5 seller experience
+
+Thin `/seller/vehicles` routes compose the dashboard and wizard. Request-local cached authorization runs in the listing layout before its child loading boundary so unrelated/invalid IDs retain actual 404 responses. Proxy includes `/seller/**`; pages/actions/photo handlers independently validate confirmed identity with Auth. Safe Auth returns additionally allow fixed seller dashboard/new/UUID paths. Public pages stay session-independent.
+
+The feature separates queries/page authorization, draft/final schemas, server operations, exact pricing conversion, image decoding/storage handlers, autosave and focused step components. It reuses Button/Input, district/fuel/transmission values, money helpers and existing tokens. Typed seller copy shares the existing English fallback boundary; no incomplete language is offered. Profiles have no phone field yet, so contact phone is collected once in the listing and the validated account email is reused.
+
+An 800ms debounce persists bounded allowlisted details, integer price columns and last step to PostgreSQL. Saves serialize and drain newer changes before navigation/submission. Revision conflicts cannot overwrite another window. Failed saves preserve values and offer retry, ordinary link navigation flushes edits, and full-page exits warn while dirty. No sensitive draft is stored in the browser. Guests sign in before entering details. Step validation excludes future fields; full server and SQL submission validation require all fields and actual guided photos. PostgreSQL locks transitions and makes repeated submission idempotent. Only draft and pending_review exist; pending records are read-only and non-public.
+
+Same-origin bounded photo handlers use the ordinary authenticated SSR client. Private Storage and immutable reserved paths enforce owned draft writes. Sharp is declared directly for byte decoding, pixel/animation/type limits, orientation correction, metadata stripping and maximum-1600px JPEGs. Upload progress/retry, camera/gallery, deletion, cover and ordering do not block editing earlier steps. Storage/RPC input stays untrusted: previews and final submission decode bytes again. Private previews bypass shared Next image optimization and send no-store/nosniff/no-referrer. Durable owner upload quotas and draft limits bound abuse; no elevated client is used.
+
+Private seller intake is separate from the public read model because that model intentionally has no owner/private reserve/contact fields. No automatic publication, admin decision, ownership/SMS verification or auction execution is added. Future authorized publication must revalidate content and project approved public fields. DATABASE.md records SQL invariants; Stage 5 evidence records provider limitations.
 
 ## Public rendering
 
-The root layout validates the site URL, loads metadata/common copy and renders the shared shell. The homepage/catalog/details now render dynamically for current public data and never check a session. My account leads to a protected server page. Proxy still matches auth/account/admin routes only; missing configuration does not gate public information or render private content.
+The root layout validates the site URL, loads metadata/common copy and renders the shared shell. The homepage/catalog/details render dynamically for current public data and never check a session. Account/seller/admin pages are protected; Proxy matches auth/account/seller/admin paths. Missing configuration does not gate public information or render private content.
 
 The root body tolerates extension-injected attributes with suppressHydrationWarning at that element only. This is a documented one-level React escape hatch for the observed `__processed_…` marker; children retain hydration diagnostics. It does not repair nested extension mutations or change SSR/Auth behavior. A pre-hydration body-injection browser regression exercises rendering and navigation in development and production modes.
 
@@ -73,7 +86,7 @@ Supabase enforces provider Auth rate limits; actions map throttling to understan
 
 ## Database and verification boundaries
 
-SQL owns relationships, constraints, timestamps, profile provisioning, public visibility, RLS and column grants; see DATABASE.md. Types are generated by executing migrations in PGlite and introspecting PostgreSQL's catalog. The generator covers current scalar columns (including integer/bigint/boolean), generated-column write restrictions, single-column foreign keys and the current no-argument JSONB facets RPC. Extend it or adopt Supabase CLI generation as the schema expands.
+SQL owns relationships, constraints, timestamps, profile provisioning, public visibility, RLS and column grants; see DATABASE.md. Types are generated by executing migrations in PGlite and introspecting PostgreSQL's catalog. The generator covers scalar/JSONB columns, generated-column write restrictions, single-column foreign keys, the no-argument JSONB facets RPC and single-JSONB-argument seller RPCs. Unsupported signatures fail closed. Extend it or adopt Supabase CLI generation as the schema expands.
 
 PGlite tests exercise actual PostgreSQL with synthetic Auth/Storage schemas and customer roles. Service/guard tests mock the provider. E2E first builds without configuration, then uses a loopback test-only REST/Storage adapter running the same SQL/RLS and seeds. It supplies no production data, implements no Auth service and closes before the runner restores a normal build. Tests do not verify actual GoTrue, PostgREST, Storage service, SMTP, signing keys or deployment defaults. Public configuration is present; earlier provider checks reported missing tables, while the latest Stage 1 normal UI shows zero approved listings. This observed public UI state does not complete provider Auth/media/schema acceptance, which remains pending in PHASE_LOG.md.
 
@@ -83,7 +96,7 @@ Tailwind 4/PostCSS and CSS-first semantic tokens remain the design source. The s
 
 Licensed Geist and script-only variable Noto Sans Sinhala/Tamil WOFF2 assets are bundled through next/font/local. Script fonts use Unicode ranges, swap and preload=false; explicit lang=si/ta spans choose the corresponding family. Browser glyph inspection confirms both custom fonts, with no third-party font requests. Font provenance/licenses live in src/app/fonts/ and the Stage 1 manifest. Primary controls are at least 48px high, with wrapping labels and focus/disabled states. Semantic landmarks, skip link, decorative icon hiding and reduced-motion behavior remain intact.
 
-The homepage keeps search ahead of its image on mobile. Its separately generated, optimized static automotive hero is explicitly illustrative, not listing photography; only that exact image path is added to Next Image's local allowlist. Approved listing media continues through the existing private Storage/public visibility boundary. The seller information route displays a static ordered list of future stages, not an interactive wizard. See docs/design/redesign-2026-10-10/implementation.md and design-qa.md for the selected direction and visual evidence.
+The homepage keeps search ahead of its image on mobile. Its separately generated, optimized static automotive hero is explicitly illustrative, not listing photography; only that exact image path is added to Next Image's local allowlist. Approved listing media continues through the private Storage/public visibility boundary. The public seller introduction displays five steps and links to the protected wizard/dashboard added in Stage 5. See docs/design/redesign-2026-10-10/implementation.md and design-qa.md for the original selected direction.
 
 Stage 1 splits SiteHeader/SiteFooter from the shell and composes HomepageHero, VehicleCategoryList, RecentVehicles and HowItWorks. The original VehicleSearch/Grid/Card/Skeletons/ListingState and bounded six-row query are reused. The hero's secondary selling link opens the existing coming-soon information route; the guide ends with Bid when available. Account navigation retains /account and existing server-validated access/guest redirects. Public rendering introduces no new session lookup. Browse/detail, authentication/profile/query and database files were preserved byte-for-byte against this stage's starting state. See docs/design/stage-1-2026-10-10/implementation.md for scope and current evidence.
 

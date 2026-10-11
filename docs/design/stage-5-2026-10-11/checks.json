@@ -1,0 +1,390 @@
+{
+  "observations": [
+    {
+      "name": "guest-introduction",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "empty-dashboard",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "vehicle-validation",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "step-1",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "other-model",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "step-2",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "step-3-empty",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "step-3-photos",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "step-4",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "step-5",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "submitted",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "dashboard",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "locked-submission",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "text-200-percent",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "keyboard-focus",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "script-long-copy-stress",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "guest-introduction",
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "empty-dashboard",
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "vehicle-validation",
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "step-1",
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "step-2",
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "step-3-empty",
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "step-3-photos",
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "step-4",
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "step-5",
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "submitted",
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "dashboard",
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "locked-submission",
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "guest-introduction",
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "empty-dashboard",
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "vehicle-validation",
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "step-1",
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "step-2",
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "step-3-empty",
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "step-3-photos",
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "step-4",
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "step-5",
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "submitted",
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "dashboard",
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "locked-submission",
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "guest-introduction",
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "empty-dashboard",
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "vehicle-validation",
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "step-1",
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "step-2",
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "step-3-empty",
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "step-3-photos",
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "step-4",
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "step-5",
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "submitted",
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "dashboard",
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "locked-submission",
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "guest-introduction",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "empty-dashboard",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "vehicle-validation",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "step-1",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "step-2",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "step-3-empty",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "step-3-photos",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "step-4",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "step-5",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "submitted",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "dashboard",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "locked-submission",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    }
+  ],
+  "errors": [],
+  "boundary": "Actual migrated PostgreSQL/RLS; simulated Auth/PostgREST/Storage transport. Not hosted-provider acceptance."
+}
