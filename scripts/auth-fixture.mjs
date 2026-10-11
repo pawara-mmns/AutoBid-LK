@@ -4,15 +4,17 @@ import { createServer } from "node:http";
 import { randomUUID } from "node:crypto";
 import { startMarketplaceFixture } from "./marketplace-fixture.mjs";
 
-export async function startAuthFixture() {
+export async function startAuthFixture({ seller = false } = {}) {
   const marketplace = await startMarketplaceFixture();
+  const sellerFixture = seller ? await (await import("./seller-fixture.mjs")).createSellerFixture() : null;
+  const identities = new Map();
   const sessions = new Map();
   const profiles = new Map();
   const requests = [];
-  const user = (email) => ({ id: "00000000-0000-4000-8000-000000000001", email,
+  const user = (email) => { if (seller && !identities.has(email)) identities.set(email, randomUUID()); return ({ id: seller ? identities.get(email) : "00000000-0000-4000-8000-000000000001", email,
     aud: "authenticated", role: "authenticated", created_at: "2026-10-09T00:00:00Z",
     email_confirmed_at: "2026-10-09T00:00:00Z", app_metadata: { provider: "email" },
-    user_metadata: { role: "admin" }, identities: [] });
+    user_metadata: { role: "admin" }, identities: [] }); };
   const session = (account) => {
     const now = Math.floor(Date.now() / 1000);
     const encode = (value) => Buffer.from(JSON.stringify(value)).toString("base64url");
@@ -76,6 +78,7 @@ export async function startAuthFixture() {
         }
         return json(profiles.get(account.id));
       }
+      if (sellerFixture && await sellerFixture.handle(request, response, account)) return;
       const upstream = await fetch(`${marketplace.url}${request.url}`, { headers: { apikey: "sb_publishable_autobid_fixture_only" } });
       response.writeHead(upstream.status, { "Content-Type": upstream.headers.get("content-type") ?? "application/json", ...(upstream.headers.has("content-range") ? { "Content-Range": upstream.headers.get("content-range") } : {}) });
       response.end(Buffer.from(await upstream.arrayBuffer()));
@@ -83,5 +86,5 @@ export async function startAuthFixture() {
   });
   await new Promise((resolve, reject) => { server.once("error", reject); server.listen(0, "127.0.0.1", resolve); });
   return { url: `http://127.0.0.1:${server.address().port}`, requests,
-    async close() { await new Promise((resolve) => server.close(resolve)); await marketplace.close(); } };
+    async close() { await new Promise((resolve) => server.close(resolve)); await marketplace.close(); await sellerFixture?.close(); } };
 }

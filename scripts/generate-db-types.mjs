@@ -30,7 +30,7 @@ export async function generateDatabaseTypes() {
       where c.contype = 'f' and n.nspname = 'public' order by t.relname, c.conname
     `);
     const typeFor = (column) => {
-      const types = { uuid: "string", text: "string", "timestamp with time zone": "string", smallint: "number", integer: "number", bigint: "number", boolean: "boolean" };
+      const types = { uuid: "string", text: "string", jsonb: "Json", "timestamp with time zone": "string", smallint: "number", integer: "number", bigint: "number", boolean: "boolean" };
       if (!types[column.data_type]) throw new Error(`Unsupported database type: ${column.data_type}`);
       return types[column.data_type] + (column.is_nullable === "YES" ? " | null" : "");
     };
@@ -55,11 +55,11 @@ export async function generateDatabaseTypes() {
       }
       output += "        ];\n      };\n";
     }
-    const { rows: functions } = await db.query("select p.proname as name, pg_catalog.format_type(p.prorettype, null) as return_type, p.pronargs as args from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname='public' and p.prorettype <> 'trigger'::regtype order by p.proname");
+    const { rows: functions } = await db.query("select p.proname as name, pg_catalog.format_type(p.prorettype, null) as return_type, p.pronargs as args, p.proargnames as arg_names, p.proargtypes::text as arg_types from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname='public' and p.prorettype <> 'trigger'::regtype order by p.proname");
     output += "    };\n    Views: { [_ in never]: never };\n    Functions: {\n";
     for (const fn of functions) {
-      if (fn.args !== 0 || fn.return_type !== "jsonb") throw new Error("Extend type generation for the new RPC signature.");
-      output += `      ${fn.name}: { Args: Record<string, never>; Returns: Json };\n`;
+      if (fn.return_type !== "jsonb" || (fn.args !== 0 && !(fn.args === 1 && fn.arg_types === "3802" && fn.arg_names[0] === "p_input"))) throw new Error("Extend type generation for the new RPC signature.");
+      output += `      ${fn.name}: { Args: ${fn.args === 0 ? "Record<string, never>" : "{ p_input: Json }"}; Returns: Json };\n`;
     }
     output += "    };\n    Enums: { [_ in never]: never };\n    CompositeTypes: { [_ in never]: never };\n  };\n};\n";
     output += "\nexport type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[];\n";
