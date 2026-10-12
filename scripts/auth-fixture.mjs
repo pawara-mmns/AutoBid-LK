@@ -4,9 +4,9 @@ import { createServer } from "node:http";
 import { randomUUID } from "node:crypto";
 import { startMarketplaceFixture } from "./marketplace-fixture.mjs";
 
-export async function startAuthFixture({ seller = false } = {}) {
+export async function startAuthFixture({ seller = false, admin = false } = {}) {
   const marketplace = await startMarketplaceFixture();
-  const sellerFixture = seller ? await (await import("./seller-fixture.mjs")).createSellerFixture() : null;
+  const sellerFixture = seller ? await (await import("./seller-fixture.mjs")).createSellerFixture({ admin }) : null;
   const identities = new Map();
   const sessions = new Map();
   const profiles = new Map();
@@ -62,6 +62,7 @@ export async function startAuthFixture({ seller = false } = {}) {
         }
         return json({ msg: "Test-only unsupported Auth operation" }, 404);
       }
+      if (admin && sellerFixture && request.method === 'GET' && ['/rest/v1/profiles','/rest/v1/admin_grants'].includes(url.pathname) && await sellerFixture.handle(request,response,account)) return;
       if (["/rest/v1/profiles", "/rest/v1/dealer_profiles", "/rest/v1/admin_grants"].includes(url.pathname)) {
         if (!account) return json({ message: "Test-only unauthenticated" }, 401);
         if (url.pathname.endsWith("admin_grants") || url.pathname.endsWith("dealer_profiles")) {
