@@ -18,6 +18,8 @@ src/
     marketplace/       homepage and pre-release information views
     vehicles/          public queries/DTOs/search/money and focused vehicle UI
     seller-listings/   owned private drafts, five steps, photos, prices and submission
+    admin/             submitted review queues, detail, protected decisions and history
+    verification/      private evidence collection, original-byte validation and downloads
   i18n/                typed English copy, locale and market conventions
   lib/
     env.ts             public site configuration
@@ -38,7 +40,17 @@ tests/
 docs/                  requirements, architecture, roadmap and phase evidence
 ```
 
-`@/*` resolves to `src/*`. Future modules include verification, auctions, bidding, notifications/watchlists, transactions and moderation. Add them only in their authorized phases.
+`@/*` resolves to `src/*`. Future modules include auctions, bidding, notifications/watchlists, transactions and broader moderation. Add them only in their authorized phases.
+
+## Stage 6 admin and manual verification
+
+Thin `/admin`, `/admin/listings`, `/admin/listings/[id]` and `/admin/history` routes compose focused feature views. Layouts authorize before child loading can stream; pages, actions and media handlers independently validate confirmed Auth identity and current database grants. Queue/history use bounded security-invoker RPCs with explicit projections, validated search/date/status filters, deterministic ordering and 20-row pagination. Existing Proxy rules and dynamic rendering keep private responses uncached.
+
+Seller intake now supports draft, pending_review, under_review, changes_required, approved and rejected. Narrow security-definer operations lock the current admin grant and submission, require optimistic versions and request UUIDs, reject self-review and commit decisions together with append-only events. Evidence outcomes are private admin records tied to the current revision. Every resubmission invalidates outcomes, preserves original/latest timestamps and returns to the queue. Correction save/photo/Storage operations enforce the reopened groups server/database-side. Photo operations retain the save revision while locking the parent and invalidating outcomes; their content cannot change during under_review. Seller feedback never reads admin notes or audit rows.
+
+Identity evidence is collected after submission on `/seller/vehicles/[id]/evidence`, outside the exact five wizard steps. Stage 5 photos remain in their existing private bucket. A separate necessary private `verification-documents` bucket holds identity/registration/authority/finance originals because Stage 5 had no identity-document store. Bounded immutable reservations, consent/intake, shared durable upload quotas, owner/admin RLS and exact path checks protect it. Raster decoding validates originals without reducing document readability; PDFs have structural header/trailer checks and are attachment-only, with sandbox/no-sniff/no-referrer/no-store responses. This is not malware scanning or authenticity verification. No signed/public document URL or elevated client is introduced. Authorized app admin downloads record access events; direct authorized Storage reads require separate provider access logging before release.
+
+Approval remains a private review decision. Existing intake terms do not authorize publication fees/auction commitments, and the public read model has no private intake owner/contact/reserve fields. No automatic copy, public photo promotion or auction is created. Future publication must obtain approved commitments, revalidate content and project only public-safe fields. See DATABASE.md for invariants and docs/design/stage-6-2026-10-11/implementation.md for tests, privacy/retention planning and provider acceptance limits. Earlier Stage 5 descriptions below record the previous two-state milestone.
 
 ## Stage 5 seller experience
 

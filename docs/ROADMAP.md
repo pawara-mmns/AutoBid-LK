@@ -16,9 +16,9 @@ Phases require explicit authorization. Completion of a phase never authorizes th
 
 ## Status
 
-UI Redesign Stages 1–4 are complete within Phase 2. Stage 5 explicitly authorizes development Phase 3 seller management: private owned drafts, the five-step wizard, private photos/prices, pending submission and My Vehicles. Source and isolated checks are implemented; actual-provider acceptance remains pending. Stage 5 evidence is in docs/design/stage-5-2026-10-11/implementation.md. Complete disposable-provider Auth/Storage/seller acceptance before release. Development Phase 4 Admin & Verification is the next recommended feature stage and requires new authorization. Bidding/payments/publication remain outside Stage 5.
+UI Redesign Stages 1–4 are complete within Phase 2. Stage 5 implements seller management; Stage 6 explicitly authorizes development Phase 4 Admin & Verification: real private queues/counts, evidence review, atomic decisions/history, customer-safe feedback and restricted corrections/resubmission. Source and isolated checks are implemented; actual-provider acceptance remains pending. Evidence is in docs/design/stage-5-2026-10-11/implementation.md and docs/design/stage-6-2026-10-11/implementation.md. Approved intake remains private under current publication terms. Stop after Stage 6. Disposable-provider acceptance is recommended next; future publication execution, bidding/payments and Phase 5 require new authorization.
 
-Phase 0: complete. Phases 1–3: source implementation and isolated verification complete; actual provider acceptance remains pending. Public configuration exists; an earlier normal UI showed zero approved listings. That snapshot does not verify provider Auth/media/schema acceptance. No migration/deployment was performed during Stage 5. See PHASE_LOG.md for the provider gate. Phases 4–8 are not started or authorized.
+Phase 0: complete. Phases 1–4: source implementation and isolated verification complete; actual provider acceptance remains pending. Public configuration exists; an earlier normal UI showed zero approved listings. That snapshot does not verify provider Auth/media/schema acceptance. No live migration/deployment was performed during Stages 5–6. See PHASE_LOG.md for the provider gate. Phases 5–8 are not started or authorized.
 
 | Phase 2 milestone | Implemented and verified scope |
 | --- | --- |
