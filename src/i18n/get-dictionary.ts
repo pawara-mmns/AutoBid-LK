@@ -1,6 +1,8 @@
 import { defaultLocale, type Locale } from "@/i18n/config";
 import { en, type Dictionary } from "@/i18n/dictionaries/en";
 import { sellerEn, type SellerDictionary } from "@/i18n/dictionaries/seller-en";
+import { adminEn, type AdminDictionary } from "@/i18n/dictionaries/admin-en";
+export function getAdminDictionary(): AdminDictionary { return adminEn; }
 
 export function getSellerDictionary(locale: Locale = defaultLocale): SellerDictionary {
   // No untranslated locale is offered. Future reviewed dictionaries share this shape.

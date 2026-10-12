@@ -59,6 +59,87 @@ export type Database = {
           { foreignKeyName: "dealer_profiles_verified_by_fkey"; columns: ["verified_by"]; isOneToOne: false; referencedRelation: "users"; referencedColumns: ["id"] },
         ];
       };
+      listing_review_events: {
+        Row: {
+          id: string;
+          request_id: string;
+          listing_id: string;
+          actor_id: string | null;
+          action: string;
+          previous_status: string;
+          resulting_status: string;
+          public_reason: string | null;
+          internal_note: string | null;
+          metadata: Json;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          request_id: string;
+          listing_id: string;
+          actor_id?: string | null;
+          action: string;
+          previous_status: string;
+          resulting_status: string;
+          public_reason?: string | null;
+          internal_note?: string | null;
+          metadata?: Json;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          request_id?: string;
+          listing_id?: string;
+          actor_id?: string | null;
+          action?: string;
+          previous_status?: string;
+          resulting_status?: string;
+          public_reason?: string | null;
+          internal_note?: string | null;
+          metadata?: Json;
+          created_at?: string;
+        };
+        Relationships: [
+          { foreignKeyName: "listing_review_events_actor_id_fkey"; columns: ["actor_id"]; isOneToOne: false; referencedRelation: "profiles"; referencedColumns: ["id"] },
+          { foreignKeyName: "listing_review_events_listing_id_fkey"; columns: ["listing_id"]; isOneToOne: false; referencedRelation: "seller_listings"; referencedColumns: ["id"] },
+        ];
+      };
+      listing_verifications: {
+        Row: {
+          listing_id: string;
+          identity_outcome: string;
+          ownership_outcome: string;
+          finance_outcome: string;
+          internal_note: string;
+          checked_revision: number | null;
+          reviewer_id: string | null;
+          updated_at: string;
+        };
+        Insert: {
+          listing_id: string;
+          identity_outcome?: string;
+          ownership_outcome?: string;
+          finance_outcome?: string;
+          internal_note?: string;
+          checked_revision?: number | null;
+          reviewer_id?: string | null;
+          updated_at?: string;
+        };
+        Update: {
+          listing_id?: string;
+          identity_outcome?: string;
+          ownership_outcome?: string;
+          finance_outcome?: string;
+          internal_note?: string;
+          checked_revision?: number | null;
+          reviewer_id?: string | null;
+          updated_at?: string;
+        };
+        Relationships: [
+          { foreignKeyName: "listing_verifications_listing_id_fkey"; columns: ["listing_id"]; isOneToOne: true; referencedRelation: "seller_listings"; referencedColumns: ["id"] },
+          { foreignKeyName: "listing_verifications_reviewer_id_fkey"; columns: ["reviewer_id"]; isOneToOne: false; referencedRelation: "profiles"; referencedColumns: ["id"] },
+        ];
+      };
       profiles: {
         Row: {
           id: string;
@@ -136,6 +217,10 @@ export type Database = {
           updated_at: string;
           phone_verified: boolean;
           submission_terms_version: string | null;
+          last_submitted_at: string | null;
+          resubmitted_at: string | null;
+          public_feedback: string | null;
+          correction_scopes: Json;
         };
         Insert: {
           id: string;
@@ -152,6 +237,10 @@ export type Database = {
           updated_at?: string;
           phone_verified?: boolean;
           submission_terms_version?: string | null;
+          last_submitted_at?: string | null;
+          resubmitted_at?: string | null;
+          public_feedback?: string | null;
+          correction_scopes?: Json;
         };
         Update: {
           id?: string;
@@ -168,6 +257,10 @@ export type Database = {
           updated_at?: string;
           phone_verified?: boolean;
           submission_terms_version?: string | null;
+          last_submitted_at?: string | null;
+          resubmitted_at?: string | null;
+          public_feedback?: string | null;
+          correction_scopes?: Json;
         };
         Relationships: [
           { foreignKeyName: "seller_listings_owner_id_fkey"; columns: ["owner_id"]; isOneToOne: false; referencedRelation: "profiles"; referencedColumns: ["id"] },
@@ -313,14 +406,80 @@ export type Database = {
           { foreignKeyName: "vehicle_media_listing_id_fkey"; columns: ["listing_id"]; isOneToOne: false; referencedRelation: "vehicle_listings"; referencedColumns: ["id"] },
         ];
       };
+      verification_documents: {
+        Row: {
+          id: string;
+          listing_id: string;
+          kind: string;
+          storage_path: string;
+          format: string;
+          uploaded_at: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id: string;
+          listing_id: string;
+          kind: string;
+          storage_path: string;
+          format: string;
+          uploaded_at?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          listing_id?: string;
+          kind?: string;
+          storage_path?: string;
+          format?: string;
+          uploaded_at?: string | null;
+          created_at?: string;
+        };
+        Relationships: [
+          { foreignKeyName: "verification_documents_listing_id_fkey"; columns: ["listing_id"]; isOneToOne: false; referencedRelation: "seller_listings"; referencedColumns: ["id"] },
+        ];
+      };
+      verification_intakes: {
+        Row: {
+          listing_id: string;
+          legal_name: string;
+          registration_number: string;
+          chassis_number: string;
+          consent_version: string;
+          updated_at: string;
+        };
+        Insert: {
+          listing_id: string;
+          legal_name: string;
+          registration_number: string;
+          chassis_number: string;
+          consent_version: string;
+          updated_at?: string;
+        };
+        Update: {
+          listing_id?: string;
+          legal_name?: string;
+          registration_number?: string;
+          chassis_number?: string;
+          consent_version?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          { foreignKeyName: "verification_intakes_listing_id_fkey"; columns: ["listing_id"]; isOneToOne: true; referencedRelation: "seller_listings"; referencedColumns: ["id"] },
+        ];
+      };
     };
     Views: { [_ in never]: never };
     Functions: {
+      admin_review_counts: { Args: { p_input: Json }; Returns: Json };
+      admin_review_history: { Args: { p_input: Json }; Returns: Json };
+      admin_review_operation: { Args: { p_input: Json }; Returns: Json };
+      admin_review_queue: { Args: { p_input: Json }; Returns: Json };
       marketplace_facets: { Args: Record<string, never>; Returns: Json };
       seller_create_draft: { Args: { p_input: Json }; Returns: Json };
       seller_manage_photo: { Args: { p_input: Json }; Returns: Json };
       seller_save_draft: { Args: { p_input: Json }; Returns: Json };
       seller_submit_listing: { Args: { p_input: Json }; Returns: Json };
+      seller_verification_evidence: { Args: { p_input: Json }; Returns: Json };
     };
     Enums: { [_ in never]: never };
     CompositeTypes: { [_ in never]: never };

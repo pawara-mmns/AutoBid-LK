@@ -135,7 +135,7 @@ export const en = {
     changePassword: "Change password",
     adminLink: "Administration access",
     adminTitle: "Administration access",
-    adminDescription: "Your account has administration access. Review tools will be added in a later phase.",
+    adminDescription: "Your account has administration access. Review submitted vehicles, private evidence and decision history.",
   },
   marketplace: {
     eyebrow: "Used cars. Sri Lanka first.",
@@ -275,9 +275,9 @@ export const en = {
   },
   information: {
     back: "Browse vehicles",
-    about: { title: "About AutoBid LK", paragraphs: ["AutoBid LK is building a simpler way to find used cars in Sri Lanka.", "Public browsing comes first. Seller submissions, verification reviews and bidding will be added in later releases.", "A listing approved for public display is not a vehicle inspection or a guarantee of its condition."] },
+    about: { title: "About AutoBid LK", paragraphs: ["AutoBid LK is building a simpler way to find used cars in Sri Lanka.", "Browse public vehicles, submit a private seller listing and provide evidence for manual review. Publication and bidding require further steps.", "A listing approved for public display is not a vehicle inspection or a guarantee of its condition."] },
     contact: { title: "Contact", paragraphs: ["Public support contact details are being prepared and will be published before transaction features open.", "For now, our Help page explains what is available in this release."] },
-    help: { title: "A little help finding your car", paragraphs: ["Search by make or model on the homepage. On Browse vehicles, open Filters to choose a brand, district, price or year range.", "Open View details to review photos, specifications and seller-declared condition. Clear filters if no vehicles match.", "You do not need an account to browse. Sign in to add your vehicle in five steps, save a private draft and submit it for review. Document verification and bidding are coming later."] },
+    help: { title: "A little help finding your car", paragraphs: ["Search by make or model on the homepage. On Browse vehicles, open Filters to choose a brand, district, price or year range.", "Open View details to review photos, specifications and seller-declared condition. Clear filters if no vehicles match.", "You do not need an account to browse. Sign in to add your vehicle in five steps, save a private draft and submit it for review. Provide private evidence after submission and see review feedback in My Vehicles. Bidding is coming later."] },
     terms: { title: "Terms — being prepared", paragraphs: ["Marketplace participation terms will be published and reviewed before bidding and transaction features open.", "This release provides vehicle information for browsing. It does not accept bids, process payments or complete vehicle sales."] },
     privacy: { title: "Privacy information", paragraphs: ["You can browse without creating an account. Search filters appear in the page URL, so include only vehicle search terms.", "Account authentication uses Supabase and session cookies. Account names and dealer details are private to their account under the current access rules.", "Private identity and ownership documents are not part of public listings. A full reviewed privacy policy will be published before production launch."] },
     sell: { title: "Sell your vehicle", paragraphs: ["Add your used passenger car in five simple steps. Sign in to save a private draft and return whenever you need.", "Your details and photos stay private while awaiting review. Contact, identity and ownership checks are required before publication. Submitting does not start an auction. Bidding is coming in a later release."] },
