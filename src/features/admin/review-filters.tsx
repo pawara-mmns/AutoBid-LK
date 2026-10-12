@@ -1,0 +1,9 @@
+import Link from 'next/link';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { getAdminDictionary } from '@/i18n/get-dictionary';
+import { queueStatuses,type QueueFilters } from './schema';
+export function ReviewFilters({filters}:{filters:QueueFilters}) {
+ const c=getAdminDictionary(); const selectClass='min-h-12 w-full rounded-md border border-control-border bg-surface px-3 text-base';
+ return <form action="/admin/listings" className="mb-8 grid gap-4 rounded-md border border-border bg-surface p-4 sm:grid-cols-2 lg:grid-cols-3"><label className="space-y-2"><span className="block font-medium">{c.search}</span><Input name="q" defaultValue={filters.q} maxLength={80}/></label><label className="space-y-2"><span className="block font-medium">{c.status}</span><select aria-label={c.status} name="status" defaultValue={filters.status} className={selectClass}>{queueStatuses.map((s)=><option key={s} value={s}>{s==='waiting'?c.waiting:s==='all'?c.all:c.statuses[s]}</option>)}</select></label><label className="space-y-2"><span className="block font-medium">{c.sort}</span><select aria-label={c.sort} name="sort" defaultValue={filters.sort} className={selectClass}><option value="oldest">{c.oldest}</option><option value="newest">{c.newest}</option></select></label><label className="space-y-2"><span className="block font-medium">{c.from}</span><Input name="from" type="date" defaultValue={filters.from}/></label><label className="space-y-2"><span className="block font-medium">{c.to}</span><Input name="to" type="date" defaultValue={filters.to}/></label><div className="flex flex-wrap items-end gap-3"><Button type="submit">{c.apply}</Button><Button asChild variant="ghost"><Link href="/admin/listings">{c.clear}</Link></Button></div></form>;
+}

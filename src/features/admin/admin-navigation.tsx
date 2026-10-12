@@ -1,0 +1,3 @@
+import Link from 'next/link';
+import { getAdminDictionary } from '@/i18n/get-dictionary';
+export function AdminNavigation() {const c=getAdminDictionary(); return <nav aria-label={c.navigation} className="mb-8 flex flex-wrap gap-2 border-b border-border pb-4"><Link href="/admin" className="flex min-h-12 items-center rounded-md px-4 text-primary underline">{c.overview}</Link><Link href="/admin/listings" className="flex min-h-12 items-center rounded-md px-4 text-primary underline">{c.queue}</Link><Link href="/admin/history" className="flex min-h-12 items-center rounded-md px-4 text-primary underline">{c.history}</Link></nav>;}
