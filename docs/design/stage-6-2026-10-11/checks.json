@@ -1,0 +1,474 @@
+{
+  "observations": [
+    {
+      "name": "evidence-empty",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "evidence-uploaded",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "overview",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "queue",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "queue-empty",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "review-pending",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "review-underway",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "review-accepted",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "approve-dialog",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "changes-dialog",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "seller-changes",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "seller-approved",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "history",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "reject-dialog",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "seller-rejected",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "text-200-percent",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "keyboard-focus",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "script-long-copy-stress",
+      "width": 360,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "evidence-empty",
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "evidence-uploaded",
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "overview",
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "queue",
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "queue-empty",
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "review-pending",
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "review-underway",
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "review-accepted",
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "approve-dialog",
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "changes-dialog",
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "seller-changes",
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "seller-approved",
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "history",
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "reject-dialog",
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "seller-rejected",
+      "width": 390,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "evidence-empty",
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "evidence-uploaded",
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "overview",
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "queue",
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "queue-empty",
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "review-pending",
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "review-underway",
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "review-accepted",
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "approve-dialog",
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "changes-dialog",
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "seller-changes",
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "seller-approved",
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "history",
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "reject-dialog",
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "seller-rejected",
+      "width": 768,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "evidence-empty",
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "evidence-uploaded",
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "overview",
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "queue",
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "queue-empty",
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "review-pending",
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "review-underway",
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "review-accepted",
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "approve-dialog",
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "changes-dialog",
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "seller-changes",
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "seller-approved",
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "history",
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "reject-dialog",
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "seller-rejected",
+      "width": 1280,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "evidence-empty",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "evidence-uploaded",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "overview",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "queue",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "queue-empty",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "review-pending",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "review-underway",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "review-accepted",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "approve-dialog",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "changes-dialog",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "seller-changes",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "seller-approved",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "history",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "reject-dialog",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    },
+    {
+      "name": "seller-rejected",
+      "width": 1440,
+      "overflow": false,
+      "undersized": []
+    }
+  ],
+  "errors": [],
+  "boundary": "Actual migrated PostgreSQL/RLS with synthetic Auth/PostgREST/object transport; no hosted-provider acceptance."
+}
