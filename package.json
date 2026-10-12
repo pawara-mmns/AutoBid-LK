@@ -20,6 +20,8 @@
     "db:types:check": "node scripts/generate-db-types.mjs --check",
     "test:e2e": "node scripts/run-e2e.mjs",
     "test:e2e:seller": "node scripts/run-seller-e2e.mjs",
+    "test:e2e:admin": "node scripts/run-admin-e2e.mjs",
+    "qa:admin": "node scripts/admin-design-qa.mjs",
     "qa:browse": "node scripts/browse-design-qa.mjs",
     "qa:details": "node scripts/details-design-qa.mjs",
     "qa:auth": "node scripts/auth-design-qa.mjs",
