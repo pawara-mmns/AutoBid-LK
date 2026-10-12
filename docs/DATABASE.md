@@ -1,4 +1,23 @@
-# Database foundation, marketplace and seller intake
+# Database foundation, marketplace, seller intake and review
+
+## Stage 6 private administration
+
+Four additional migrations extend the five existing ones, without altering public catalog projections:
+
+- `202610110004_admin_foundation.sql`: six-state private intake lifecycle, original/latest/resubmitted times, customer-safe feedback and correction groups, submitted-only admin SELECT policies and bounded queue/count RPCs.
+- `202610110005_private_verification.sql`: private `verification_intakes`, immutable `verification_documents`, admin-only revision-bound `listing_verifications`, append-only `listing_review_events`, a necessary private identity-document bucket, owner evidence operations and atomic grant-checked review operations.
+- `202610110006_seller_corrections.sql`: explicit replacements of existing validated save/photo/submit functions, group-restricted changes, editable-photo Storage policies, preserved first submission and audit resubmission. Rejected/approved/under-review records cannot be reopened by a customer RPC.
+- `202610110007_review_history.sql`: 20-row deterministic history pagination and listing/actor/action/status/Colombo-date filters.
+
+These migrations are source changes only; no live project migration has been applied during Stage 6. All nine run in isolated PostgreSQL and generate the checked-in types. The synthetic Auth/Storage schemas do not validate hosted Supabase services. Earlier Stage 5 sections below describe the prior implementation.
+
+State transitions: `draft -> pending_review -> under_review -> approved | changes_required | rejected`; `changes_required -> pending_review` after restricted corrections and complete resubmission. `approved` means accepted for a manual review, stays private and does not activate bidding. Existing approved/published public vehicles remain independently visible under unchanged RLS. Original submission time is immutable through these operations; latest submission/resubmission times are server-generated. Decision/correction times are preserved in events, even after later resubmissions.
+
+Customers and admins have SELECT only, filtered by ownership/current grants; neither can directly write lifecycle, outcomes or audit tables. Admin intake/photograph reads exclude arbitrary drafts. Normal users cannot create/revoke admin grants or read another seller's private prices/evidence. Outcomes/notes/events are not seller-readable. Operations use `auth.uid()`, fixed search paths, current-grant `FOR SHARE`, submission `FOR UPDATE`, versions and request UUID idempotency. Conflicting/stale decisions fail; retries of the same completed operation return the stored result. All decision writes and their event insertions are one PostgreSQL transaction. Approval requires accepted identity/ownership, conditional authority/finance evidence, current revision, consent/intake, complete guided photos and actual object existence; the application revalidates bytes. Manual attestation does not prove legal ownership or authenticity.
+
+`verification-documents` is private, 8 MiB/object, accepts JPEG/PNG/WebP/PDF and has no UPDATE/upsert policy. Paths are immutable owner/listing/document UUID plus validated format. Owner reservation/insert/delete is limited to pending submissions or explicitly reopened documents; under-review/approved/rejected evidence is locked. The existing durable 60 upload attempts/hour quota also covers document reservations; at most eight evidence records/listing. Original readable documents are retained; private previews are uncached and bypass shared image optimization. PDFs download as octet-stream attachments and are not embedded. Unknown/missing/malformed/cross-account references fail closed.
+
+Audit records retain listing/actor/action/old-new state/server time/seller explanation/permitted internal note and bounded review metadata. Approval captures evidence outcomes. Application document access logs contain no contents, numbers or storage URLs. Admin history never joins private fields into public reads. Audit FK restriction prevents accidental removal through listing deletion; actor deletion can anonymize its reference. Retention/erasure therefore requires a separately authorized trusted workflow that respects legal retention and removes private objects before associated metadata. No arbitrary retention duration, silent deletion or production cleanup job is invented in this stage. See the Stage 6 privacy review and release gates before collecting real identity evidence.
 
 ## Stage 5 private seller intake
 

@@ -40,7 +40,7 @@ Save drafts and validate each step. Use plain explanations and safe defaults ins
 
 Stage 5 implements these five steps for authenticated used-passenger-car sellers. Incomplete owned drafts and the current step persist in PostgreSQL. Accident, flood, mechanical and finance disclosures remain separate. Four guided photos are required for submission, with up to 12 private photos including damage. Prices are exact LKR cents; the minimum remains private. Duration is a future preference (1/3/7 days, default 3), never an active auction. Final contact/ownership declarations, intake terms and accuracy are required. Typed phone numbers stay unverified.
 
-My Vehicles shows only the account's own rows, actual cover/year/expected price/date and genuine Draft or Submitted for Review status. Only drafts are editable. Review requests/approval/rejection/publication belong to the next authorized Admin & Verification phase; they are not simulated here. No sensitive browser-only draft is authoritative, and public browsing remains account-free.
+My Vehicles shows the account's actual rows, cover/year/expected price, submission/update dates and all six genuine lifecycle statuses. Stage 6 adds customer-safe reasons, reopened correction groups and resubmission. Admin-only notes/history never reach seller responses. Sellers can add private identity/registration evidence after submission; authority/finance clearance is conditional. Review outcomes are manual checks, not authenticity, legal ownership or mechanical certification. Approval remains private until publication commitments are completed. No sensitive browser-only draft is authoritative, and public browsing remains account-free.
 
 ## Domain modules
 
