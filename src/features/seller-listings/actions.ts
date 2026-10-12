@@ -24,6 +24,7 @@ export async function submitListing(input: unknown) {
   try {
     const listing = await loadSellerListing(client, user.id, parsed.data.id); if (!listing) return { ok: false as const };
     if (listing.status === "pending_review") return { ok: true as const };
+    if (!["draft","changes_required"].includes(listing.status)) return { ok: false as const };
     if (listing.revision !== parsed.data.revision) return { ok: false as const, conflict: true };
     const photos = await loadSellerPhotos(client, listing.id); const form = initialForm(listing);
     const errors = validateSubmission(form, photos.filter((p) => p.uploaded_at).map((p) => p.slot));

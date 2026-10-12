@@ -19,7 +19,7 @@ export async function handlePhotoMutation(request: Request, id: string) {
   if (!z.uuid().safeParse(id).success) return result({ error: "not_available" }, 404);
   const client = await createServerSupabaseClient(); const user = client && await getValidatedUser(client); if (!client || !user) return result({ error: "sign_in" }, 401);
   try {
-    const listing = await loadSellerListing(client, user.id, id); if (!listing || listing.status !== "draft") return result({ error: "not_editable" }, 403);
+    const listing = await loadSellerListing(client, user.id, id); if (!listing || !(listing.status === "draft" || (listing.status === "changes_required" && Array.isArray(listing.correction_scopes) && listing.correction_scopes.includes("photos")))) return result({ error: "not_editable" }, 403);
     if (request.headers.get("content-type")?.startsWith("multipart/form-data")) {
       const form = await boundedForm(request); const file = form.get("file"); const slot = z.enum(["front", "back", "interior", "dashboard", "extra"]).parse(form.get("slot"));
       if (!(file instanceof File) || file.size > maxPhotoBytes) return result({ error: "unsupported" }, 400);
